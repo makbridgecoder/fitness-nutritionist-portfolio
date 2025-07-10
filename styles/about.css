@@ -1,0 +1,67 @@
+ 
+
+.navbar {
+  padding: 15px 0;
+  background: var(--about-me-intro__background);
+}
+
+.about-me-intro {
+  padding: 2rem 0;
+  background-color: var(--about-me-intro__background);
+  color: var(--main-theme-color);
+}
+
+
+
+.about-offer { 
+  padding: 4rem 0;
+}
+
+.about-offer .row {
+  flex-direction: row-reverse;
+}
+.about-offer .left-container {
+  color: var(--theme-color-black);
+}
+
+.img-container {
+  border-radius: 1rem;
+
+}
+
+.about-me-intro img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+  
+}
+.about-offer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+}
+
+
+  .right-container { 
+  margin-top: 2rem;
+}
+
+.modulo-hero_title {
+  font-size: 2.5rem;
+}
+
+/*MEDIA QUERIES*/
+
+@media (width > 768px) {
+  .about-me-intro {
+    padding: 4rem 0;
+  }
+}
+
+@media (width > 992px) {
+  .right-container {
+    margin-top: 0;
+  } 
+}

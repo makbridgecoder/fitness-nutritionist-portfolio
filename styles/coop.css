@@ -1,0 +1,124 @@
+
+
+body {
+  overflow-x: hidden;
+
+}
+
+p {
+  margin: 0 0 0.7rem;
+  
+}
+
+.navbar {
+  padding: 15px 0;
+  background: var(--about-me-intro__background);
+}
+
+
+.coop-entrance, 
+.coop-modulo {
+  padding: 4rem 0;
+}
+
+.coop-modulo {
+  background-color: var(--home-cooper-background);
+  
+}
+
+.coop-entrance h3 {
+  color: var(--shop-product__button);
+  
+}
+
+h1 { 
+  font-size: 26px;
+}
+
+h5 {
+  color: var(--theme-color-black);
+  font-weight: 600;
+  margin: 0.8rem 0;
+  text-transform: uppercase;
+}
+
+hr {
+  background-color: var(--theme-color-black);
+  height: 1px;
+  outline: none;
+  margin: 0;
+}
+
+
+.left-container p {
+  color: var(--theme-color-black);
+}
+
+.rigth-container {
+  display: flex; 
+}
+.modulo-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+.home-step-main-box {
+  color: var(--theme-color-white);
+}
+
+.step-box-title-ct {
+  display: flex;
+}
+
+.step-box-title__icon-ct {
+  display: flex;
+  align-items: center;
+}
+
+.step-box__icon {
+  font-size: 3rem;
+}
+
+.step-box__title {
+  margin-left: 1.5rem;
+}
+
+
+
+.products__boxes-desc__txt {
+  padding-left: 5px;
+  min-height: 120px;
+}
+
+
+
+
+
+
+
+/*MEDIA QUERIES*/
+
+@media (width >= 768px) {
+  .shop-product__main-box {
+    margin: 2rem 1rem;
+    width: 300px;
+  }
+  
+  .section-title {
+    text-align: left;
+  }
+}
+
+@media (width <= 992px) {
+  .home-step-main-box {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (width >= 1200px) {
+  .home-step-main-box {
+    background-color: var(--home-cooper-background);
+  }
+}

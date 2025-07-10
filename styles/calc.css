@@ -1,0 +1,249 @@
+
+
+body {
+  overflow-x: hidden;
+
+}
+
+p {
+  margin: 0 0 0.7rem;
+  
+}
+
+.navbar {
+  padding: 15px 0;
+  background: var(--about-me-intro__background);
+}
+
+
+.coop-entrance, 
+.coop-modulo {
+  padding: 2rem 0;
+}
+
+.coop-modulo {
+  background-color: var(--home-cooper-background);
+  padding-bottom: 4rem;
+
+  
+}
+
+.left-container {
+ padding-bottom: 1rem;
+}
+
+.coop-modulo .home-step-main-box:last-child {
+  padding: 30px 15px;
+}
+
+.coop-entrance h3 {
+  color: var(--shop-product__button);
+  
+}
+
+h1 { 
+  font-size: 26px;
+}
+
+h5 {
+  color: var(--theme-color-black);
+  font-weight: 600;
+  margin: 0.8rem 0;
+  text-transform: uppercase;
+}
+
+hr {
+  background-color: var(--theme-color-black);
+  height: 1px;
+  outline: none;
+  margin: 0;
+}
+
+
+.left-container p {
+  color: var(--theme-color-black);
+}
+
+.rigth-container {
+  display: flex; 
+}
+
+.modulo-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+.home-step-main-box {
+  color: var(--theme-color-white);
+  width: 100%;
+  
+}
+
+.home-step-main-box:first-child {
+  box-shadow: 
+
+  /*
+    -8px 0px 8px -8px var(--theme-color-black),
+    8px 0px 8px -8px var(--theme-color-black),
+    0px -8px 8px -8px var(--theme-color-black),
+    0px 8px 8px -8px var(--theme-color-black) ;
+    */
+    0px 0px 8px 0px var(--theme-color-black) ;
+    
+  }
+  
+  .home-step-main-box:nth-child(2) {
+    box-shadow: 
+    -8px 0px 8px -8px var(--theme-color-black),
+    8px 0px 8px -8px var(--theme-color-black),
+    0px 8px 8px -8px var(--theme-color-black) ;
+}
+
+.step-box-title-ct {
+  display: flex;
+}
+
+.step-box__title {
+  margin-left: 1.5rem;
+}
+
+.coop-boxes-quest-ct {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-flow: column wrap;
+  padding: 0.5rem 1rem;
+}
+
+.form-group .main-label {
+  padding-right: 20px;
+}
+
+.form-group.justify-left.row_dirct {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 1rem;
+  
+}
+
+.form-group.justify-left {
+  justify-content: left;
+  
+}
+
+.activity_select_form {
+  width: 100%;
+}
+
+.main-label {
+  display: inline-flex;
+  padding-right: 0.6rem;
+  font-weight: 600;
+}
+
+.coop-quest__gdr {
+  min-width: 250px;
+  
+}
+
+.coop-quest__metric {
+  gap: 10px;
+  
+}
+
+.coop-input {
+  display: inline-flex;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: none;
+  width: 100px;
+  text-align: center;
+}
+
+.coop-input.select_form {
+  width: 240px;
+  
+}
+
+
+.calc-btn-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.home-step-button {
+  width: 200px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px var(--theme-color-black);
+  background-color: var(--shop-product__button__hover);
+  transition: background-color 0.3s ease-out 20ms;
+} 
+
+.home-step-button:hover {
+  background-color: var(--theme-color-white);
+}
+/*MEDIA QUERIES*/
+
+@media (width >=320px) {
+  
+}
+
+@media only screen and (width >= 768px) {
+  .coop-entrance,
+  .coop-modulo {
+    padding: 4rem 0;
+  }
+
+  .coop-modulo {
+    padding-bottom: 6rem;
+  }
+  
+  .shop-product__main-box {
+    margin: 2rem 1rem;
+    width: 300px;
+  }
+  
+  .home-step-main-box {
+    width: 50%;
+    padding: 0 10px;
+    box-shadow: 0px 2px 8px 0px var(--theme-color-black) ;
+  }
+  
+  .home-step-main-box:first-child {
+    box-shadow: 
+      -8px 0px 8px -8px var(--theme-color-black),
+      0px 0px 8px -8px var(--theme-color-black),
+      0px -8px 8px -8px var(--theme-color-black),
+      0px 8px 8px -8px var(--theme-color-black) ;
+      
+    }
+    
+    .home-step-main-box:nth-child(2) {
+      box-shadow: 
+      0px 0px 8px 0px var(--theme-color-black) ;
+  }
+  
+ 
+  .section-title {
+    text-align: left;
+  }
+}
+
+@media only screen and (width <= 992px) {
+}
+
+@media only screen and (width >= 1200px) {
+  .home-step-main-box {
+    background-color: var(--home-cooper-background);
+  }
+}

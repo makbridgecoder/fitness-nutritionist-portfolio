@@ -1,0 +1,199 @@
+
+<head>
+
+  <title>Piotr Makuch - Cooperation</title>
+  
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+  <link rel="stylesheet" type="text/css" href="/styles/calc.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-about">
+      <div class="container-XXL"> 
+        <div class="nav-left-section">
+          <a class="navbar-brand" href="/index.html"><img src="/icons/logo/PM_logo_bigger_nobackground_v4.png" class="logo" alt="John Wrestler Fitness Trainer logo"></a>
+        </div>
+        <div class="nav-middle-section">
+          <ul class="navbar-list">
+            <li class="navbar-menu-item"><a href="about.html">O mnie</a></li>
+            <li class="navbar-menu-item"><a href="shop.html">Sklep</a></li>
+            <li class="navbar-menu-item"><a href="coop.html">Współpraca</a></li>
+            <li class="navbar-menu-item"><a href="calc.html">Kalkulator</a></li>
+            <li class="navbar-menu-item"><a href="blog.html">Blog</a></li>
+            <li class="navbar-menu-item"><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="navbar-collapse collapse">
+          <a href="#"><div class="material-symbols-outlined size-48">
+              menu
+            </div></a>
+        </div>
+        <div class="nav-right-section">
+          <div class="nav-card-button"><a href="#">
+            <div class="material-symbols-outlined size-24">
+            account_circle</div></a>
+          </div>
+          <div class="nav-card-button"><a href="#">
+            <div class="material-symbols-outlined size-24">
+          shopping_basket</div></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="coop-entrance">
+      <div class="container-XXL">
+        <div class="row justify-content-center">
+          <div class="modulo-hero-left-container left-container">
+            <h3>Calculate first...</h3>
+            <h2 class="section-title"> Track Your Daily Energy Needs
+            </h2>
+            <p> A calories calculator helps estimate your daily caloric requirements based on key factors such as age, weight, height, gender, and activity level. Using scientifically proven formulas, it calculates your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) to provide personalized recommendations for maintaining, losing, or gaining weight effectively.</p>
+          </div>
+          <div class="modulo-hero-right-container right-container">
+            <div class="img-container">
+              <img class="modulo-hero-image" src="../images/calculator1280.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="coop-modulo">
+      <div class="container-XXL">
+        <div class="row justify-content-center">
+          <h1 class="coop-modulo__title">TDEE Calculator</h1>
+        </div>
+        <div class="row justify-content-center">
+          <div class="home-step-main-box">
+            <div class="step-box">
+              <div class="step-box-title-ct">
+                <h3 class="step-box__title"> Body parametrs
+                </h3>
+              </div>
+              <form action="/submit-form" method="POST" class="coop-boxes-quest-ct">
+                <div class="form-container coop-quest__gdr">
+                  <div class="form-group justify-left row_dirct">
+                    <div class="cpm-input main-label">Gender</div> 
+                    <input type="radio" name="gender" id="gender_famale" class="cpm-input">
+                    <label for="gender_famale" class="main-label">Famale</label>
+                    <input type="radio" name="gender" id="gender_male" class="cpm_input">
+                    <label for="gender_male" class="cpm_input">Male</label>
+                  </div>
+                </div>
+                <div class="form-container coop-quest__metric">
+                  <div class="form-group">
+                    <label for="metric__age" class="cpm-input main-label">Age</label>
+                    <input type="text" name="metric" id="metric__age" class="coop-input" placeholder="years" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="metric__height" class="cpm-input main-label">Height</label>
+                    <input type="text" name="metric" id="metric__height" class="coop-input" placeholder="cm" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="metric__weight" class="cpm-input main-label">Weight</label>
+                    <input type="text" name="metric" id="metric__weight" class="coop-input" placeholder="kg" required>
+                  </div>
+                  <div class="form-group activity_select_form">
+                    <label for="activity_lvl" class="cpm-input main-label">Activity level</label>
+                    <select name="metric" id="activity_lvl" class="coop-input select_form" required>
+                      <option value="">Please choose an option</option>
+                      <option value="1.2">Sedentary (little or no excercise)</option>
+                      <option value="1.375">Lightly active (light exercise 1–3 days/week)</option>
+                      <option value="1.55">Moderately active (moderately exercise 3–5 days/week)</option>
+                      <option value="1.75">Very active (hard exercise 6-7 days/week)</option>
+                      <option value="1.9">Extra active (very hard exercise + physical job)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="calc-btn-ctn">
+                  <button class="home-step-button">
+                    Calculate TDEE
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>  
+          <div class="home-step-main-box">
+            <p> TDEE stands for Total Daily Energy Expenditure. It represents the total number of calories your body burns in a day, including all activities. TDEE is calculated by combining your Basal Metabolic Rate (BMR) with the calories burned through physical activity, digestion, and daily tasks. It helps determine how many calories you need to maintain, lose, or gain weight. Factors that affect TDEE include age, gender, weight, height, and activity level. Knowing your TDEE is essential for creating an effective and personalized nutrition or fitness plan.</p>
+          </div>        
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container-XXL">
+      <div class="row justify-cont-spc-between">
+        
+        <div class="footer-logo-ct footer-ct">
+          <img src="/icons/logo/PM_logo_bigger_nobackground_v4.png" alt="John Wrestler Fitness Trainer Logo" class="logo">
+          <p>Need a help?</p>
+          <p>Contact with me</p>
+          <p>Schedul a free consultation</p>
+        </div>
+        <div class="footer-main-ct footer-ct">
+          <h3>Main</h3>
+          <ul class="footer-list">
+            <li>Home</li>
+            <li>About Me</li>
+            <li>Blog</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+        <div class="footer-prod-ct footer-ct">
+          <h3>Products</h3>
+          <ul class="footer-list">
+            <li>Współpraca</li>
+            <li>Wycena</li>
+            <li>Kalkulator</li>
+            <li>Metamorfozy</li>
+          </ul>
+        </div>
+        <div class="footer-contact-ct footer-ct">
+          <h3>Contact</h3>
+          <div class="footer-contact__phone">
+            <a href="tel: +533577100" class="footer-contact__phone-number">
+              <i class="material-symbols-outlined">phone</i>
+              <p>+ 48 533 577 100</p>
+            </a>
+          </div>
+          <div class="footer-contact__mail">
+            <a href="mailto:example@example.com" class="footer-contact__mail-link">
+              <i class="material-symbols-outlined">mail</i>
+              <p>anyexample@example.com</p>
+
+            </a>
+          </div>
+          <div class="footer-contact__soc-med">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <i class="fa-brands fa-facebook"></i>  
+            </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a> 
+            <a href="https://linkedin.com" target="_blank" aria-label="Linkedin">
+              <i class="fa-brands fa-linkedin"></i>  
+            </a>  
+          </div>
+        </div>
+      </div>
+      <div class="footer-line"></div>
+      <hr>
+      <div class="row justify-content-center footer-copyrights"><p>&copy; 2024 Piotr Makuch. All rights reserved.</p></div>
+    </div>
+    
+  </footer>
+</body>
