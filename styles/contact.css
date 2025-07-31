@@ -1,0 +1,184 @@
+
+
+body {
+  overflow-x: hidden;
+  
+}
+
+p {
+  margin: 0 0 0.7rem;
+  
+}
+
+.navbar {
+  padding: 15px 0;
+  background: var(--contact-me-navbar-bckg);
+}
+
+.container-XXL {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+.coop-entrance, 
+.coop-modulo {
+  padding: 4rem 0;
+}
+
+.coop-modulo {
+  background-color: var(--contact-me-form);
+  padding: 2rem 0;
+  
+}
+
+.coop-modulo h1 { 
+  color: rgb(170, 139, 86);
+  font-size: 2rem;
+}
+
+.step-box__icon {
+  align-content: center;
+  margin-left: 2rem;
+  color: rgb(170, 139, 86);
+}
+
+.coop-entrance h3 {
+  color: var(--shop-product__button);
+  
+}
+
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+h5 {
+  color: var(--theme-color-black);
+  font-weight: 600;
+  margin: 0.8rem 0;
+  text-transform: uppercase;
+}
+
+hr {
+  background-color: var(--theme-color-black);
+  height: 1px;
+  outline: none;
+  margin: 0;
+}
+
+
+.left-container p {
+  color: var(--theme-color-black);
+}
+
+.right-container {
+  display: flex; 
+  margin-top: 1rem;
+  
+}
+.img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.modulo-hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
+}
+
+.home-step-main-box {
+  color: var(--contact-me-form-txt);
+}
+
+.step-box-title-ct {
+  display: flex;
+}
+
+.step-box-title__icon-ct {
+  display: flex;
+  align-items: center;
+}
+
+.step-box__icon {
+  font-size: 3rem;
+}
+
+.step-box__title {
+  margin-left: 1.5rem;
+}
+
+
+
+.products__boxes-desc__txt {
+  padding-left: 5px;
+  min-height: 120px;
+}
+
+
+.highlighted-words {
+  font-weight: 600;
+}
+
+
+
+
+
+
+/*MEDIA QUERIES*/
+
+@media (width > 360px){
+  .container-XXL {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (width > 576px) {
+  .modulo-hero-left-container,
+  .modulo-hero-right-container {
+    width: 50%;
+  }
+  
+  .left-container h3 {
+    font-size: 1rem;
+  }
+  .section-title {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .right-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+
+  }
+
+  .img-container {
+    outline: 1px solid green;
+  }
+
+}
+
+@media (width >= 768px) {
+  .shop-product__main-box {
+    margin: 2rem 1rem;
+    width: 300px;
+  }
+
+}
+
+@media (width <= 992px) {
+  .home-step-main-box {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (width >= 1200px) {
+  .home-step-main-box {
+    background-color: var(--home-cooper-background);
+  }
+}

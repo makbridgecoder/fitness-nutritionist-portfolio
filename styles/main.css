@@ -56,6 +56,9 @@ html {
   --blog-article_category-hover: #99b38baf;
   --blog-newsletter__form: rgb(61, 69, 46);
   --blog-all-articles__hover: #076907;
+  --contact-me-form: rgb(240, 235, 206);
+  --contact-me-form-txt: rgb(191, 146, 100);
+  --contact-me-navbar-bckg: rgb(57, 81, 68);
   line-height: 1.6;
   scroll-behavior: smooth;
 
