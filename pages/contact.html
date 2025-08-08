@@ -79,6 +79,47 @@ I’ll make sure you get all the info you need to feel confident and ready to st
         <div class="row justify-content-center">
           <div class="home-step-main-box">
             <div class="step-box">
+              <form action="/submit" method="post" id="contact-us-form">
+                <div class="contact-us_personal-data">
+                  <div class="form-group ct-us_name">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required>
+                  </div>
+                  <div class="form-group ct-us_email">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email" required>
+                  </div>
+                  <div class="form-group ct-us_phone ">
+                    <label for="phone">Phone</label>
+                    <input type="tel" name="phone" id="phone" required>
+                  </div>
+                  <div class="form-group ct-us_category ">
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                      <option value="general-inquiry" class="contact-me_select-opt">General inquiry</option>
+                      <option value="feedbeck" class="contact-me_select-opt">Feedback or Suggestion</option>
+                      <option value="product-inquiry" class="contact-me_select-opt">Product inquiry</option>
+                      <option value="price" class="contact-me_select-opt">Pricing information</option>
+                      <option value="order-track" class="contact-me_select-opt">Order Status</option>
+                      <option value="return" class="contact-me_select-opt">Return & Refund Request</option>
+                      <option value="collab" class="contact-me_select-opt">Partnership & Collaboration</option>
+                      <option value="privacy" class="contact-me_select-opt">Terms & Conditions</option>
+                    </select>
+                  </div>
+                  <div class="form-group ct-us_msg">
+                    <label for="msg">How can we help you?</label>
+                    <textarea  name="msg" id="msg" rows="5" required></textarea>
+
+                  </div>
+                  <div class="form-group ct-us_privacy">
+                    <input type="checkbox" name="privacy" id="privacy" required>
+                    <label for="privacy">I agree that my personal data will be processed in accordance with the <a href="#">Privacy Policy</a></label>
+                  </div>
+                  <button>Send Message</button>
+                </div>
+                <div class="contact-us_contact-form"></div>
+
+              </form>
             </div>
           </div>          
         </div>
@@ -88,7 +129,6 @@ I’ll make sure you get all the info you need to feel confident and ready to st
   <footer>
     <div class="container-XXL">
       <div class="row justify-cont-spc-between">
-        
         <div class="footer-logo-ct footer-ct">
           <img src="/icons/logo/PM_logo_bigger_nobackground_v4.png" alt="John Wrestler Fitness Trainer Logo" class="logo">
           <p>Need a help?</p>

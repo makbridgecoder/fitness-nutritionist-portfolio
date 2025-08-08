@@ -20,6 +20,7 @@ p {
   padding-right: 0.4rem;
 }
 
+
 .coop-entrance, 
 .coop-modulo {
   padding: 4rem 0;
@@ -32,14 +33,21 @@ p {
 }
 
 .coop-modulo h1 { 
-  color: rgb(170, 139, 86);
+  color: var(--contact-me-title);
   font-size: 2rem;
 }
 
 .step-box__icon {
   align-content: center;
   margin-left: 2rem;
-  color: rgb(170, 139, 86);
+  color: var(--contact-me-title);
+  font-size: 32px;
+  
+}
+
+.home-step-main-box {
+  max-width: 800px;
+  width: 80%;
 }
 
 .coop-entrance h3 {
@@ -86,30 +94,12 @@ hr {
   width: 100%;
   height: auto;
   object-fit: cover; 
+  border-radius: 5px;
 }
 
 .home-step-main-box {
   color: var(--contact-me-form-txt);
 }
-
-.step-box-title-ct {
-  display: flex;
-}
-
-.step-box-title__icon-ct {
-  display: flex;
-  align-items: center;
-}
-
-.step-box__icon {
-  font-size: 3rem;
-}
-
-.step-box__title {
-  margin-left: 1.5rem;
-}
-
-
 
 .products__boxes-desc__txt {
   padding-left: 5px;
@@ -121,6 +111,81 @@ hr {
   font-weight: 600;
 }
 
+input, 
+button, 
+select,
+textarea {
+  font: inherit;
+  border: 1px solid var(--contact-me-title) ;
+  color: var(--theme-color-black);
+  border-radius: 5px;
+}
+
+input,
+select,
+textarea {
+  background-color:  var(--contact-me-forms);
+}
+
+
+
+.contact-us_personal-data {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.5cap;
+}
+
+.ct-us_privacy {
+  display: grid ;
+  grid-template-columns: .5fr 8fr;
+  column-gap: 0.7rem;
+  grid-column:  1/-1;
+  margin-top: 1px;
+}
+
+.ct-us_privacy input {
+  max-width: 16px;
+  justify-self: start;
+  
+}
+
+.ct-us_privacy a {
+  color: var(--theme-color-black);
+}
+
+
+
+label {
+  line-height: normal;
+}
+
+input {
+  padding: 1ex 2ex;
+  width: 100%;
+}
+
+button {
+  justify-self: center;
+  margin-top: 15px;
+  padding: 0.8em 1em;
+  border: 0;
+  border-radius: 5px;
+  background-color: var(--home-cooper-background);
+  display: block;
+  width: 12rem;
+}
+
+.ct-us_msg {
+  grid-column: 1/-1;
+}
+
+.ct-us_msg textarea {
+  font-size: 1rem;
+}
 
 
 
@@ -148,16 +213,17 @@ hr {
     font-size: 2rem;
     text-align: left;
   }
-
+  
   .right-container {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
-
+    
   }
-
-  .img-container {
-    outline: 1px solid green;
+  
+  .form-group {
+    width: 80%;
+    justify-self: center;
   }
 
 }
@@ -167,18 +233,41 @@ hr {
     margin: 2rem 1rem;
     width: 300px;
   }
-
-}
-
-@media (width <= 992px) {
-  .home-step-main-box {
-    max-width: 100%;
+  
+  .contact-us_personal-data {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .form-group {
     width: 100%;
   }
+  
+  button {
+    justify-self: start;
+  }
+  
 }
 
-@media (width >= 1200px) {
-  .home-step-main-box {
-    background-color: var(--home-cooper-background);
+@media (width >= 992px) {
+  .form-group {
+    width: 100%;
   }
+  .ct-us_privacy input {
+    max-width: none;
+    width: 50px;
+    height: 20px;
+    background-color:  red;
+  }
+
+
+}
+
+
+@media (width >= 1200px) {
+  .home-step-main-box { 
+    background-color: var(--contact-me-form);
+
+
+  }
+
 }
