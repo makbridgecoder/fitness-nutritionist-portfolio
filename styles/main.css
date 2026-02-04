@@ -1,26 +1,4 @@
-/*
-html {
-  --main-theme-color:  rgb(17,83,57);
-  --dark-green-theme-color: rgba(23,27,25,0.5);
-  --home-step-body-background: white;
-  --theme-color-black: #1E1E1E;
-  --theme-color-white: #FFFFFF;
-  --main-light-gray: #FFF;
-  --navbar-menu-item-hover: rgb(13, 45, 30);
-  --step-box-main-theme: white;
-  --step-box-button: rgb(190, 144, 108);
-  --home-review-comment-container-color: rgb(238, 238, 238);
-  --home-cooper-background: rgb(185, 148, 112);
-  --dark-brown-color: rgb(145, 79, 30);
-  --home-cooper-cards: rgb(222, 172, 128);
-  --most-pop-left-cont: #D2E3C8;
-  --most-pop-right-cont: #F2F1EB;
-  --most-pop-box-btn-background: #304D30;
-  --home-call-background: rgb(209, 212, 210);
-  --footer-main-background: #1e1e1e;
-  line-height: 1.6;
 
-}*/
 
 html {
   --main-theme-color:  rgb(81, 81, 63);
@@ -164,10 +142,10 @@ h2 {
   font-size: 2rem;
 }
 
-nav 
-a:link,
-a:visited,
-a:active {
+
+nav a:link,
+nav a:visited,
+nav a:active {
   text-decoration: none;
   color: var(--main-light-gray);
   cursor: pointer;
@@ -472,7 +450,6 @@ a:active {
   position: relative;
   justify-content: space-between;
   border-radius: 3.5rem;
-  max-width: 350px;
   background-color: var(--theme-color-white);
   padding: 0.7rem 1.4rem;
   margin: 2.5rem auto 4rem;
@@ -482,12 +459,12 @@ a:active {
 }
 
 .google-logo {
-  height: 25;
+  height: 49px;
   
 }
 
 .google-logo-img {
-  height: 100%;
+  height: 50%;
 }
   
 .google-score-text {
@@ -734,7 +711,6 @@ text-wrap: nowrap;
 }
 
 .home-call__desc {
-  background-color: var(--home);
   margin-bottom: 2rem;
   color: var(--theme-color-black);
 }
