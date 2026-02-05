@@ -1,78 +1,84 @@
-# fitness-nutritionist-portfolio
+# Fitness Nutritionist Portfolio Website
 
-A responsive personal website for Piotr Makuch, a certified nutritionist and fitness trainer.  
-This project showcases services, testimonials, and wellness content.
+Responsive multi-page website simulating a real client project for a fitness nutrition advisor.
+Built to practice semantic HTML, modern CSS layout techniques, and deployment workflow.
 
-## 🧘‍♀️ About
+## 🔗 Live Demo
 
-This site was built to:
+🔗 Live Demo: https://trainwise.netlify.app
 
-- Promote fitness and nutrition services
-- Showcase a clean and modern portfolio
-- Provide visitors with valuable health tips
+💻 Source Code: https://github.com/makbridgecoder/fitness-nutritionist-portfolio
 
-## 🔧 Tech Stack
+## Overview
+
+This project demonstrates front-end fundamentals through the implementation of a structured static website without JavaScript frameworks.
+The focus was on layout architecture, responsiveness, component reuse, and clean project organization.
+
+## Tech Stack
 
 - HTML5
-- CSS3
-- Responsive design (mobile-first)
 
-> JavaScript and animations will be added in future versions.
+- CSS3 (Flexbox, responsive layout)
 
-## 🖼️ Live Preview
+- Google Fonts
 
-[👉 View the site](https://trainwise.netlify.app/) 
+- Font Awesome
 
-## 📁 Folder Structure
+- Netlify deployment
 
-fitwithanna-website/
+## Features
+
+- Responsive multi-page structure
+
+- Semantic markup
+
+- Reusable navigation and footer components
+
+- Organized asset structure
+
+- External font and icon integration
+
+- Production-style deployment
+
+## Project Structure
+
+fitness-nutritionist-portfolio/
 ├── index.html
-├── icons/
-├── images/
 ├── pages/
-│ └── about.html
-│ └── blog.html
-│ └── calc.html
-│ └── contact.html
-│ └── coop.html
-│ └── shop.html
 ├── styles/
-│ └── about.css
-│ └── blog.css
-│ └── calc.css
-│ └── contact.css
-│ └── coop.css
-│ └── shop.css
-│ └── main.css
+├── images/
+├── icons/
 ├── scripts/
 └── README.md
 
-## 🚀 How to Use
+## Development Notes
 
-1. Clone the repo  
-   `git clone https://github.com/makbridgecoder/fitness-nutritionist-portfolio.git`
+This project was created as part of my transition into front-end development.
+It reflects hands-on practice with real-world workflow elements such as:
 
-2. Open `index.html` in your browser.
+- Structuring multi-page layouts
 
-3. Customize content as needed.
+- Managing relative paths
 
-## 📌 To Do
+- Preparing projects for deployment
 
-- [ ] Add JavaScript for interactivity
-- [ ] SEO optimization
-- [ ] Contact form functionality
-- [ ] Add "Contact" tab
-- [ ] Add language switcher
+- Writing technical documentation
 
+## Future Improvements
 
+- Add JavaScript interactivity
 
+- Implement mobile navigation toggle
 
-## 📬 Contact
+- Accessibility enhancements
 
-**Piotr Makuch**  
-📧 piotr.makuch19@gmail.com  
+- Performance optimizations
 
+- Component refactoring
 
----
+## Author
 
-> © 2025 Piotr Makuch. All rights reserved.
+Piotr Makuch
+Front-End Developer (transitioning from construction engineering)
+
+GitHub: https://github.com/makbridgecoder
