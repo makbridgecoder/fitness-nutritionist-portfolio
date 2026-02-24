@@ -175,6 +175,7 @@ hr {
 
 .calc-btn-ctn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
@@ -187,11 +188,14 @@ hr {
   box-shadow: 4px 4px 4px var(--theme-color-black);
   background-color: var(--shop-product__button__hover);
   transition: background-color 0.3s ease-out 20ms;
+  margin-bottom: 2rem;
 } 
 
 .home-step-button:hover {
   background-color: var(--theme-color-white);
 }
+
+
 /*MEDIA QUERIES*/
 
 @media (width >=320px) {
