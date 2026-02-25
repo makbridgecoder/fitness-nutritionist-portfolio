@@ -9,41 +9,15 @@ const calculateBtn = document.getElementById("calculate_btn");
 const calculateForm = document.getElementById("calc_form");
 const messegeContainer = document.getElementById("messege_cnt");
 
-
-
-let genderValueFemale;
-genderFemale.addEventListener("change", (e) => {
-
-  genderValueFemale = Number(e.target.value);
-  genderValueMale = "";
-  getGender();
-  
-});
-
-let genderValueMale;
-genderMale.addEventListener("change", (e) => {
-  
-  genderValueMale = Number(e.target.value);
-  genderValueFemale = "";
-  getGender();
-
-});
-
-
-
 let genderValue;
-function getGender() {
 
-  if (genderValueFemale == 1) {
-    return genderValue = Number(genderValueFemale);
-  } else if (genderValueMale == 2) {
-    return genderValue = Number(genderValueMale);
-  } else {
-    messegeContainer.innerHTML = "choose a gender";
-    return genderValue = 0;
-  }
-}
+genderFemale.addEventListener("change", (e) => {
+  genderValue = Number(e.target.value);  
+});
 
+genderMale.addEventListener("change", (e) => {
+  genderValue = Number(e.target.value);
+});
 
 
 
@@ -66,7 +40,6 @@ let activitySelected;
 activityLevelDropdown.addEventListener("change", (e) => {
   activitySelected = Number(e.target.value);
 });
-
 
 
 
@@ -117,7 +90,7 @@ calculateForm.addEventListener("submit", (e) => {
   e.preventDefault();
   
   calculateBmr(genderValue);
-  const tdee = calculateTdee();
+  calculateTdee();
   printScore();
 
 });
