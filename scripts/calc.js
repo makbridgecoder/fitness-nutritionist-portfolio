@@ -1,97 +1,54 @@
-const genderRadio = document.getElementById("gender_radio");
-const genderFemale = document.getElementById("gender_female");
-const genderMale = document.getElementById("gender_male");
+
 const ageInput = document.getElementById("metric__age");
 const heightInput = document.getElementById("metric__height");
 const weightInput = document.getElementById("metric__weight");
 const activityLevelDropdown = document.getElementById("activity_lvl");
-const calculateBtn = document.getElementById("calculate_btn");
 const calculateForm = document.getElementById("calc_form");
 const messegeContainer = document.getElementById("messege_cnt");
 
-let genderValue;
 
-genderFemale.addEventListener("change", (e) => {
-  genderValue = Number(e.target.value);  
-});
+function getExtraCalories(gender) {
+  return gender === 1 ? -161 : 5;
+}
 
-genderMale.addEventListener("change", (e) => {
-  genderValue = Number(e.target.value);
-});
+function calculateBmr(weight, height, age, extraCalories ) {
 
+  return 10 * weight + 6.25 * height - 5 * age + extraCalories;
+    
+}
 
-
-let ageValue = 0;
-ageInput.addEventListener("input", (e) => {
-  ageValue = Number(e.target.value);
-});
-
-let heightValue = 0;
-heightInput.addEventListener("input", (e) => {
-  heightValue = Number(e.target.value);
-});
-
-let weightValue = 0;
-weightInput.addEventListener("input", (e) => {
-  weightValue = Number(e.target.value);
-});
-
-let activitySelected;
-activityLevelDropdown.addEventListener("change", (e) => {
-  activitySelected = Number(e.target.value);
-});
-
-
-
-const extraCaloriesForWomen = -161;
-const extraCaloriesForMen = 5;
-
-
-
-let bmrRate;
-function calculateBmr(gender) {
-  
-  if (gender == 2) {
-    bmrRate = 10 * weightValue + 6.25 * heightValue - 5 * ageValue + extraCaloriesForMen;
-    console.log(bmrRate, "Male gender");
-    return bmrRate; 
-  } else if (gender == 1 ) {
-    bmrRate = 10 * weightValue + 6.25 * heightValue - 5 * ageValue + extraCaloriesForWomen;
-    console.log(bmrRate, "Female gender");
-    return bmrRate;
-  } else {
-    messegeContainer.innerHTML = "Choose a gender";
-    console.log("choose gen"); 
-    return;
-  }
+function calculateTdee(bmr, activity) {
+  return Math.floor(bmr * activity);
   
 }
 
-
-
-
-function calculateTdee() {
-  let Tdee = Math.floor(bmrRate * activitySelected);
-  return Tdee;
-}
-
-
-
-const printScore = function() {
+function printScore(tdee) {
   messegeContainer.innerHTML = `
 
-  <span>Your TDEE: ${calculateTdee()};</span>
+  <span>Your TDEE: ${tdee}</span>
   `
 };
-
-
-
+ 
 calculateForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  
-  calculateBmr(genderValue);
-  calculateTdee();
-  printScore();
+
+  const selectedGender = document.querySelector('input[name="gender"]:checked');
+  if (!selectedGender) {
+    messegeContainer.innerHTML = "Choose a gender";
+    return;
+  }
+
+  const gender = Number(selectedGender.value);
+  const weight = Number(weightInput.value);
+  const height = Number(heightInput.value);
+  const age = Number(ageInput.value);
+  const activity = Number(activityLevelDropdown.value);
+
+  const extraCalories = getExtraCalories(gender);
+  const bmr = calculateBmr(weight, height, age, extraCalories);
+  const tdee = calculateTdee(bmr, activity);
+
+  printScore(tdee);
 
 });
 
