@@ -96,6 +96,8 @@
                       <input class="gender_radio_class" value="2" type="radio" name="gender" id="gender_male">
                       <label for="gender_male" class="cpm_input">Mężczyzna</label>
                     </div>
+                    <div id="gender_alert_cnt" class="input_alert_cnt"><span></span></div>
+
                   </div>
                   <div class="form-container coop-quest__metric">
                     <div class="form-group">
@@ -116,13 +118,15 @@
                     <div class="form-group activity_select_form">
                       <label for="activity_lvl" class="cpm-input main-label">Poziom aktywności</label>
                       <select name="activity" id="activity_lvl" class="coop-input select_form" >
-                        <option value="">Wybierz opcję</option>
+                        <option value="0">Wybierz opcję</option>
                         <option value="1.2">Siedzący tryb życia (brak lub minimalna aktywność)</option>
                         <option value="1.375">Lekka aktywność (trening 1–3 razy w tygodniu)</option>
                         <option value="1.55">Umiarkowana aktywność (trening 3–5 razy w tygodniu)</option>
                         <option value="1.75">Wysoka aktywność (trening 6–7 razy w tygodniu)</option>
                         <option value="1.9">Bardzo wysoka aktywność (ciężkie treningi + praca fizyczna)</option>
                       </select>
+                      <div id="activity_alert_cnt" class="input_alert_cnt"><span></span></div>
+                      
                     </div>
                   </div>
                   <div class="calc-btn-ctn">
