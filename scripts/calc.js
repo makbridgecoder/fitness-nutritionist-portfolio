@@ -9,7 +9,7 @@ const ageAlertContainer = document.getElementById("age_alert_cnt");
 const heightAlertContainer = document.getElementById("height_alert_cnt");
 const weightAlertContainer = document.getElementById("weight_alert_cnt");
 const activityAlertContainer = document.getElementById("activity_alert_cnt");
-const messegeContainer = document.getElementById("messege_cnt");
+const messageContainer = document.getElementById("message_cnt");
 
 
 const ageRange = { min: 18,  max: 100, alertLokalization: ageAlertContainer};
@@ -27,11 +27,11 @@ function isValid(range, inputType) {
   inputType.addEventListener("input", () => {
     if (inputType.value === "") {
       range.alertLokalization.innerHTML = "";
-      return falseValue;
+      return;
     }
     else if (inputType.value < range.min || inputType.value > range.max) {
       range.alertLokalization.innerHTML = 
-      `<span>Choose value between ${range.min} and ${range.max}</span>
+      `<span>Wybierz pomiędzy ${range.min} i ${range.max}</span>
       `;
     } else {
       range.alertLokalization.innerHTML = "";
@@ -39,6 +39,7 @@ function isValid(range, inputType) {
   })
   
 }
+
 
 isValid(ageRange, ageInput);
 isValid(heightRange, heightInput);
@@ -61,9 +62,9 @@ function calculateTdee(bmr, activity) {
 }
 
 function printScore(tdee) {
-  messegeContainer.innerHTML = `
+  messageContainer.innerHTML = `
   
-  <span>Your TDEE: ${tdee}</span>
+  <span>Twoje TDEE: ${tdee}</span>
   `
   
 };
@@ -71,32 +72,37 @@ function printScore(tdee) {
 
 calculateForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      messageContainer.innerHTML = "";
   
   const selectedGender = document.querySelector('input[name="gender"]:checked');
       
   if (!selectedGender) {
     genderAlertContainer.innerHTML = "Wybierz płeć";
+    return;
   } else genderAlertContainer.innerHTML = "";
   
   if (ageInput.value === "") {
     ageAlertContainer.innerHTML = "Podaj wiek";
+    return;
   } else ageAlertContainer.innerHTML = "";
   
   if (heightInput.value === "") {
     heightAlertContainer.innerHTML = "Podaj wzrost";
-  }
+    return;
+  } else heightAlertContainer.innerHTML = "";
   
   if (weightInput.value === "") {
     weightAlertContainer.innerHTML = "Podaj wagę";
-  }
+    return;
+  } else weightAlertContainer.innerHTML = "";
   
   const activity = Number(activityLevelDropdown.value);
   
-  if (activity == "0") {
+  if (activity ===  0) {
     activityAlertContainer.innerHTML = "Wybierz poziom aktywności";
+    return;
     } else  {
       activityAlertContainer.innerHTML = "";
-      console.log("activity has been choosen")
     }
   
     
