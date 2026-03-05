@@ -1,4 +1,8 @@
-
+html {
+  --alert-color: rgb(0, 0, 0);
+  --alert-color2: rgba(255, 179, 71, 0.9);
+  
+}
 
 body {
   overflow-x: hidden;
@@ -83,21 +87,15 @@ hr {
 .home-step-main-box:first-child {
   box-shadow: 
 
-  /*
-    -8px 0px 8px -8px var(--theme-color-black),
-    8px 0px 8px -8px var(--theme-color-black),
-    0px -8px 8px -8px var(--theme-color-black),
-    0px 8px 8px -8px var(--theme-color-black) ;
-    */
-    0px 0px 8px 0px var(--theme-color-black) ;
+  0px 0px 8px 0px var(--theme-color-black) ;
     
   }
-  
-  .home-step-main-box:nth-child(2) {
-    box-shadow: 
-    -8px 0px 8px -8px var(--theme-color-black),
-    8px 0px 8px -8px var(--theme-color-black),
-    0px 8px 8px -8px var(--theme-color-black) ;
+
+.home-step-main-box:nth-child(2) {
+  box-shadow: 
+  -8px 0px 8px -8px var(--theme-color-black),
+  8px 0px 8px -8px var(--theme-color-black),
+  0px 8px 8px -8px var(--theme-color-black) ;
 }
 
 .step-box-title-ct {
@@ -116,36 +114,45 @@ hr {
   width: 100%;
 }
 
+
 .form-group {
   display: flex;
   flex-flow: column wrap;
-  padding: 0.5rem 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
 }
 
-.form-group .main-label {
-  padding-right: 20px;
-}
-
-.form-group.justify-left.row_dirct {
-  display: flex;
-  flex-direction: row;
-  padding: 0.5rem 1rem;
-  
-}
 
 .form-group.justify-left {
   justify-content: left;
+  flex-direction: column;
   
 }
 
+.gender_cnt {
+  padding: 0 10px;
+}
+
+.gender_radio_class {
+  display: inline;
+}
+
+
+
 .activity_select_form {
   width: 100%;
+  flex-direction: column;
 }
 
 .main-label {
-  display: inline-flex;
   padding-right: 0.6rem;
   font-weight: 600;
+}
+.main-label, 
+.form-alert {
+  align-content: center;
 }
 
 .coop-quest__gdr {
@@ -161,6 +168,7 @@ hr {
 .coop-input {
   display: inline-flex;
   padding: 0.55rem 1rem;
+  margin-right: 1rem;
   border-radius: 10px;
   border: none;
   width: 100px;
@@ -195,11 +203,32 @@ hr {
   background-color: var(--theme-color-white);
 }
 
+.form-alert {
+  color: var(--alert-color2);
+  padding-top: 0.2rem;
+}
 
+.coop-quest__gdr .form-alert {
+  padding-left: 1rem;
+}
 /*MEDIA QUERIES*/
 
 @media (width >=320px) {
-  
+
+  .form-group {
+    flex-direction: row;
+  }
+
+  .form-alert {
+    padding-top: 0;
+
+  }
+}
+
+@media (width >= 425px) {
+  .form-group.justify-left {
+    flex-direction: row;
+  }
 }
 
 @media only screen and (width >= 768px) {
