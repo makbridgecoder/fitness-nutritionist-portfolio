@@ -110,7 +110,7 @@ h2 {
   
 }
 
-.navbar>.container-XXL {
+.navbar .container-XXL {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -167,6 +167,7 @@ nav a:active {
   width: 100px;
   text-align: center;
   align-content: center;
+  display: none;
   
 }
 
@@ -183,12 +184,18 @@ nav a:active {
   top: 0;
   left: 0;
   background-color: var(--theme-color-black);
-  opacity: 0.7;
+  opacity: 1;
   height: 100vh;
   width: 100%;
   z-index: 99;
   overflow: hidden;
+  padding-top: 18px;
+  
 
+}
+
+.navbar-collapse .nav-left-section {
+  display: none;
 }
 
 .hidden {
@@ -209,9 +216,8 @@ nav a:active {
 .navbar-collapse-menu {
   display: flex;
   flex-direction: column;
-  background-color: red;
   align-items: center;
-  margin-left: 0;
+  margin-top: 4rem;
   padding-inline-start: 0;
 }
 
@@ -234,15 +240,23 @@ nav a:active {
 
 
 .nav-right-section {
-  width: 100px;
+  width: 120px;
+  display: flex;
+  justify-content: right;
+  padding-right: 1rem;
+  
+}
+
+.nav-card-button:first-child {
+  background-color: black;
   display: none;
-  justify-content: space-between;
-  
 }
-.nav-card-button {
-  align-content: center;
-  
+
+.nav-card-button:nth-child(2) {
+  background-color: red;
+
 }
+
 
 .modulo-hero { 
   padding: 3rem 0 3rem;
@@ -880,8 +894,22 @@ hr {
   
   .nav-right-section {
     display: flex;
-  }
 
+  }
+  
+}
+
+@media (width > 420px) {
+  .nav-right-section {
+    justify-content: space-between;
+
+  }
+  
+  .nav-card-button:first-child {
+    display: flex;
+
+    background-color: green;
+  }
 }
 
 
@@ -911,7 +939,14 @@ hr {
   .title-container { 
     text-align: left;
   }
+
+  .nav-left-section { 
+    display: block;
+  }
   
+  .navbar-collapse .nav-left-section {
+    display: block;
+  }
   
 }
 
@@ -998,6 +1033,11 @@ hr {
     display: none;
   }
   
+  .nav-right-section {
+    width: 100px;
+    padding-right: 0;
+  }
+
   .modulo-hero-left-container, 
   .modulo-hero-right-container {
     width: 50%;

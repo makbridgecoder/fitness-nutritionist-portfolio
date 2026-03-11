@@ -7,11 +7,13 @@ const hamburgerElement = document.getElementById("navbar-hamburger-el");
 function activateToggleCollapseContainer() {
   navbarCollapseContainer.classList.toggle("visible");
   changeSymbolToClose();
+  body.style.overflow = "hidden";
 }
 
 function collapseMenu() {
   navbarCollapseContainer.classList.remove("visible");
   changeSymbolToMenu();
+  body.style.removeProperty('overflow');
 }
 
 function changeSymbolToClose() {
