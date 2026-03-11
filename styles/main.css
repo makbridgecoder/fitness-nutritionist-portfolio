@@ -175,11 +175,53 @@ nav a:active {
   min-width: 600px;
   
 }
+
+
 .navbar-collapse {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--theme-color-black);
+  opacity: 0.7;
+  height: 100vh;
+  width: 100%;
+  z-index: 99;
+  overflow: hidden;
+
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.navbar-collapse-btn {
   align-content: center;
   width: 50px;
   height: 50px;
   
+}
+
+.navbar-collapse-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  align-items: center;
+  margin-left: 0;
+  padding-inline-start: 0;
+}
+
+.navbar-collapse-menu li {
+  list-style: none;
+  margin-bottom: 3rem;
+  background-color: green;
+  max-width: 50%;
+  border-radius: 96px;
+
 }
 
 .material-symbols-outlined.size-48 {
@@ -952,7 +994,7 @@ hr {
 
 
 @media (width > 992px) {
-  .navbar-collapse {
+  .navbar-collapse-btn {
     display: none;
   }
   
