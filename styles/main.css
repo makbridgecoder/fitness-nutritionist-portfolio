@@ -110,7 +110,7 @@ h2 {
   
 }
 
-.navbar>.container-XXL {
+.navbar .container-XXL {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -167,6 +167,7 @@ nav a:active {
   width: 100px;
   text-align: center;
   align-content: center;
+  display: none;
   
 }
 
@@ -175,11 +176,61 @@ nav a:active {
   min-width: 600px;
   
 }
+
+
 .navbar-collapse {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--theme-color-black);
+  opacity: 1;
+  height: 100vh;
+  width: 100%;
+  z-index: 99;
+  overflow: hidden;
+  padding-top: 18px;
+  
+
+}
+
+.navbar-collapse .nav-left-section {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.navbar-collapse-btn {
   align-content: center;
   width: 50px;
   height: 50px;
   
+}
+
+.navbar-collapse-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  padding-inline-start: 0;
+}
+
+.navbar-collapse-menu li {
+  list-style: none;
+  margin-bottom: 2rem;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+.navbar-collapse-menu li:hover {
+  transform: scale(1.1);
+  background-color: inherit;
 }
 
 .material-symbols-outlined.size-48 {
@@ -193,13 +244,60 @@ nav a:active {
 
 .nav-right-section {
   width: 100px;
-  display: none;
-  justify-content: space-between;
+  display: flex;
+  justify-content: right;
+  padding-right: 1rem;
   
 }
+
 .nav-card-button {
-  align-content: center;
+  transition: transform 0.2s ease-out;
+
+}
+
+.nav-card-button:hover {
+  transform: translateY(2px);
+}
+
+.nav-card-button:first-child {
+  display: none;
+}
+
+.nav-collapse-login-cnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  row-gap: 8px;
+}
+
+.nav-collapse-login-btn {
+  display: flex;
+  width: 250px;
+  flex-direction: row;
+  padding: 0.65rem 1em;
+  background-color: var(--theme-color-white);
+  color: var(--theme-color-black);
+  border-radius: 96px; 
+  justify-content: center;
+  transition: all 0.2s ease-in;
   
+  
+}
+
+.nav-collapse-login-btn:hover {
+  background-color: var(--contact-me-navbar-bckg);
+  color: var(--theme-color-white);
+}
+
+.btn-text {
+  padding-left: 10px;
+}
+
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
 }
 
 .modulo-hero { 
@@ -276,6 +374,9 @@ nav a:active {
   padding: 0.65rem 1.45rem;
   background-color: black;
   border-radius: 96px;
+  transition-property: background-color;
+  transition-delay: 0s;
+  transition-duration: 0.25s;
 }
 
 .btn.white-text {
@@ -286,9 +387,6 @@ nav a:active {
 
 .btn:hover {
   background-color: rgb(152, 135, 84);
-  transition-property: background-color;
-  transition-delay: 0s;
-  transition-duration: 0.25s;
 }
 
 .modulo-hero_pros {
@@ -838,8 +936,21 @@ hr {
   
   .nav-right-section {
     display: flex;
-  }
 
+  }
+  
+}
+
+@media (width > 420px) {
+  .nav-right-section {
+    justify-content: space-between;
+
+  }
+  
+  .nav-card-button:first-child {
+    display: flex;
+
+  }
 }
 
 
@@ -869,7 +980,14 @@ hr {
   .title-container { 
     text-align: left;
   }
+
+  .nav-left-section { 
+    display: block;
+  }
   
+  .navbar-collapse .nav-left-section {
+    display: block;
+  }
   
 }
 
@@ -952,10 +1070,15 @@ hr {
 
 
 @media (width > 992px) {
-  .navbar-collapse {
+  .navbar-collapse-btn {
     display: none;
   }
   
+  .nav-right-section {
+    width: 90px;
+    padding-right: 0;
+  }
+
   .modulo-hero-left-container, 
   .modulo-hero-right-container {
     width: 50%;
