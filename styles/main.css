@@ -217,15 +217,13 @@ nav a:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 3rem;
   padding-inline-start: 0;
 }
 
 .navbar-collapse-menu li {
   list-style: none;
-  margin-bottom: 3rem;
-  background-color: green;
-  max-width: 50%;
+  margin-bottom: 2rem;
   border-radius: 96px;
 
 }
@@ -240,7 +238,7 @@ nav a:active {
 
 
 .nav-right-section {
-  width: 120px;
+  width: 100px;
   display: flex;
   justify-content: right;
   padding-right: 1rem;
@@ -248,15 +246,39 @@ nav a:active {
 }
 
 .nav-card-button:first-child {
-  background-color: black;
   display: none;
 }
 
-.nav-card-button:nth-child(2) {
-  background-color: red;
-
+.nav-collapse-login-cnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  row-gap: 8px;
 }
 
+.nav-collapse-login-btn {
+  display: flex;
+  width: 250px;
+  flex-direction: row;
+  padding: 0.65rem 1em;
+  background-color: var(--theme-color-white);
+  color: var(--theme-color-black);
+  border-radius: 96px; 
+  justify-content: center;
+  
+  
+}
+
+.btn-text {
+  padding-left: 10px;
+}
+
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
 
 .modulo-hero { 
   padding: 3rem 0 3rem;
@@ -908,7 +930,6 @@ hr {
   .nav-card-button:first-child {
     display: flex;
 
-    background-color: green;
   }
 }
 
@@ -1034,7 +1055,7 @@ hr {
   }
   
   .nav-right-section {
-    width: 100px;
+    width: 90px;
     padding-right: 0;
   }
 
