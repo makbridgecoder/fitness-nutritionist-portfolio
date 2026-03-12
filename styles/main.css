@@ -224,8 +224,13 @@ nav a:active {
 .navbar-collapse-menu li {
   list-style: none;
   margin-bottom: 2rem;
-  border-radius: 96px;
+  transition: all 0.2s ease-in-out;
+  
+}
 
+.navbar-collapse-menu li:hover {
+  transform: scale(1.1);
+  background-color: inherit;
 }
 
 .material-symbols-outlined.size-48 {
@@ -243,6 +248,15 @@ nav a:active {
   justify-content: right;
   padding-right: 1rem;
   
+}
+
+.nav-card-button {
+  transition: transform 0.2s ease-out;
+
+}
+
+.nav-card-button:hover {
+  transform: translateY(2px);
 }
 
 .nav-card-button:first-child {
@@ -266,8 +280,14 @@ nav a:active {
   color: var(--theme-color-black);
   border-radius: 96px; 
   justify-content: center;
+  transition: all 0.2s ease-in;
   
   
+}
+
+.nav-collapse-login-btn:hover {
+  background-color: var(--contact-me-navbar-bckg);
+  color: var(--theme-color-white);
 }
 
 .btn-text {
@@ -354,6 +374,9 @@ nav a:active {
   padding: 0.65rem 1.45rem;
   background-color: black;
   border-radius: 96px;
+  transition-property: background-color;
+  transition-delay: 0s;
+  transition-duration: 0.25s;
 }
 
 .btn.white-text {
@@ -364,9 +387,6 @@ nav a:active {
 
 .btn:hover {
   background-color: rgb(152, 135, 84);
-  transition-property: background-color;
-  transition-delay: 0s;
-  transition-duration: 0.25s;
 }
 
 .modulo-hero_pros {
