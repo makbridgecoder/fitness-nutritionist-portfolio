@@ -40,7 +40,7 @@
                 </div></a>
               </div>
               <div class="nav-left-section">
-              <a class="navbar-brand" href="./"><img src="icons/logo/PM_logo_bigger_nobackground_v4.png" class="logo" alt="Piotr Makuch logo"></a>
+              <a class="navbar-brand" href="./"><img src="../icons/logo/PM_logo_bigger_nobackground_v4.png" class="logo" alt="Piotr Makuch logo"></a>
               </div>
               <div class="nav-right-section">
                   <div class="nav-card-button" id="nav-card-account-btn"><a href="#"><div class="material-symbols-outlined size-24">account_circle</div></a>
@@ -85,7 +85,9 @@
             </div>
             <div class="nav-card-button"><a href="#">
               <div class="material-symbols-outlined size-24">
-            shopping_basket</div></a>
+            shopping_basket
+              </div></a>
+              <div id="basket-product-number">4</div>
             </div>
           </div>
         </div>
@@ -113,7 +115,7 @@
       <section class="shop-products__container">
         <div class="container-XXL">
           <div class="row justify-content-center">
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="1">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images.jpg' alt="Produkt w sklepie">
@@ -128,15 +130,15 @@
                   <div class="products__boxes-desc__buy-cont">
                     <div class="products__boxes-desc__price">59,99 PLN</div>
                     <div class="vertical-line"></div>
-                    <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                    <div class="products__boxes-desc__button-container" >
+                      <button class="shop_product_button" id="economicalProduct">Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="2">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images44.jpg' alt="Produkt w sklepie">
@@ -152,15 +154,14 @@
                     <div class="products__boxes-desc__price">59,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="veganProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="3">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images6.jpg' alt="Produkt w sklepie">
@@ -176,14 +177,14 @@
                     <div class="products__boxes-desc__price">85,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="reductionProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="4">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images7.jpg' alt="Produkt w sklepie">
@@ -199,14 +200,14 @@
                     <div class="products__boxes-desc__price">59,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="ketoProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="5">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images9.jpg' alt="Produkt w sklepie">
@@ -222,14 +223,14 @@
                     <div class="products__boxes-desc__price">69,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="sportProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="6">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images10.jpg' alt="Produkt w sklepie">
@@ -245,14 +246,14 @@
                     <div class="products__boxes-desc__price">76,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="hiitProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="7">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images2.jpg' alt="Produkt w sklepie">
@@ -268,14 +269,14 @@
                     <div class="products__boxes-desc__price">69,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="stairsProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="8">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images3.jpg' alt="Produkt w sklepie">
@@ -291,14 +292,14 @@
                     <div class="products__boxes-desc__price">95,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="sandProduct" >Kup</button>
                     </div>
                   </div>
                   <hr>
                 </div>
               </div>
             </div>
-            <div class="shop-product__main-box">
+            <div class="shop-product__main-box" data-id="9">
               <div class="products__boxes">
                 <div class="products__boxes-image">
                   <img src='../images/shop_box_images5.jpg' alt="Produkt w sklepie">
@@ -314,7 +315,7 @@
                     <div class="products__boxes-desc__price">34,99 PLN</div>
                     <div class="vertical-line"></div>
                     <div class="products__boxes-desc__button-container">
-                      <button class="shop_product_button">Kup</button>
+                      <button class="shop_product_button" id="fatProduct">Kup</button>
                     </div>
                   </div>
                   <hr>
@@ -390,6 +391,7 @@
       </div>
     </footer>
     <script src="../scripts/script.js"></script>
+    <script src="../scripts/shop.js"></script>
   </body>
 
 </html>
