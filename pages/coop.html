@@ -21,6 +21,11 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-about">
         <div class="container-XXL"> 
+          <div class="navbar-collapse-btn" id="navbar-hamburger-cnt">
+            <a href="#"><div class="material-symbols-outlined size-48" id="navbar-hamburger-el">
+                menu
+              </div></a>
+          </div>
           <div class="nav-left-section">
             <a class="navbar-brand" href="../index.html"><img src="../icons/logo/PM_logo_bigger_nobackground_v4.png" class="logo" alt="Piotr Makuch logo"></a>
           </div>
@@ -34,10 +39,50 @@
               <li class="navbar-menu-item"><a href="contact.html">Kontakt</a></li>
             </ul>
           </div>
-          <div class="navbar-collapse collapse">
-            <a href="#"><div class="material-symbols-outlined size-48">
-                menu
-              </div></a>
+          <div class="navbar-collapse" id="nav-collapse-cnt">
+            <div class="container-XXL">
+              <div id="navbar-hamburger-close"><a href="#"><div class="material-symbols-outlined size-48">
+                  close
+                </div></a>
+              </div>
+              <div class="nav-left-section">
+              <a class="navbar-brand" href="./"><img src="../icons/logo/PM_logo_bigger_nobackground_v4.png" class="logo" alt="Piotr Makuch logo"></a>
+              </div>
+              <div class="nav-right-section">
+                  <div class="nav-card-button" id="nav-card-account-btn"><a href="#"><div class="material-symbols-outlined size-24">account_circle</div></a>
+                  </div>
+                  <div class="nav-card-button" id="nav-card-basket-btn"><a href="#"><div class="material-symbols-outlined size-24">
+                  shopping_basket</div></a>
+                </div>
+              </div>
+
+            </div>
+            <div class="row justify-content-center">
+              <ul class="navbar-collapse-menu">
+                <li class="navbar-menu-item"><a href="about.html"> O mnie</a></li>
+                <li class="navbar-menu-item"><a href="shop.html">Sklep</a></li>
+                <li class="navbar-menu-item"><a href="coop.html">Współpraca</a></li>
+                <li class="navbar-menu-item"><a href="calc.html">Kalkulator</a></li>
+                <li class="navbar-menu-item"><a href="blog.html">Blog</a></li>
+                <li class="navbar-menu-item"><a href="contact.html">Kontakt</a></li>
+              </ul>
+            </div>
+            <div class="row justify-content-center">
+              <div class="nav-collapse-login-cnt">
+                <a href="#" >
+                  <div class="nav-collapse-login-btn">
+                    <div class="material-symbols-outlined size-24">account_circle</div>
+                    <span class="btn-text">Zaloguj</span>
+                  </div>
+                </a>
+                <a href="tel:+48533577101" >
+                  <div class="nav-collapse-login-btn">
+                    <div class="material-symbols-outlined size-24">phone</div>
+                    <span class="btn-text">Umów konsultację</span>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
           <div class="nav-right-section">
             <div class="nav-card-button"><a href="#">
@@ -57,7 +102,7 @@
         <div class="container-XXL">
           <div class="row justify-content-center">
             <div class="modulo-hero-left-container left-container">
-              <h3>Hello friend...</h3>
+              <h3>Cześć Przyjacielu...</h3>
               <h2 class="section-title"> Znajdźmy Twoją drogę do zdrowego stylu życia...</h2>
               <p>Współpraca trenera z podopiecznym opiera się na zaufaniu, jasnej komunikacji
     i indywidualnym podejściu do celu. Dobrze dopasowany plan treningowy i żywieniowy,
@@ -220,7 +265,7 @@
         <hr>
         <div class="row justify-content-center footer-copyrights"><p>&copy; 2024 Piotr Makuch. All rights reserved.</p></div>
       </div>
-      
     </footer>
+    <script src="../scripts/script.js"></script>
   </body>
 </html>

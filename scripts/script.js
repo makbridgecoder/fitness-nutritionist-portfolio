@@ -30,4 +30,3 @@ hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
 closeHamburgerContainer.addEventListener("click", collapseMenu);
 
 
-
