@@ -1,9 +1,7 @@
 const buttons = document.querySelectorAll(".shop_product_button");
-const titles = document.querySelectorAll(".products__boxes-desc__title");
 const basketCounter = document.getElementById("basket-product-number");
 
 let purchasedProductsArray = [];
-let totalPrice = 0;
 
 function getTheText(e) {
    return e.innerText;
@@ -13,13 +11,6 @@ function textToNumber(e) {
   return parseFloat(e.replace(",", "."));
 }
 
-function getProductNumber(product) {
-  return product.dataset.id;
-}
-
-function addTotalValue(e) {
-  totalPrice += e;
-}
 
 function createProduct(id, name, price) {
   return {
@@ -32,13 +23,8 @@ function createProduct(id, name, price) {
 
 function addProductToArray(product) {
    purchasedProductsArray.push(product);
-   console.log(purchasedProductsArray);
    addItemToLocalStorage();
 }
-
-
-
-
 
 // create a local storage
 const STORAGE_KEY = "basketProducts";
@@ -47,32 +33,39 @@ function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-
 function getItemFromLocalStorage() {
-  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  console.log(stored);
-  if(!stored) return;
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (!stored) return;
   
-  purchasedProductsArray = stored;
-  console.log(purchasedProductsArray);
+  purchasedProductsArray = JSON.parse(stored);
   renderBasketCount();
+  
 }
 
 getItemFromLocalStorage();
 
 
-console.log(purchasedProductsArray);
+function calculateTotalPrice() {
+ let total = 0;
+  purchasedProductsArray.forEach(product => {
+    const price = product.price;
+    total += price;
+  });
 
-
-function basketIsEmpty() {
-  return purchasedProductsArray.length === 0
-}
-
-if (basketIsEmpty()) {
-  basketCounter.style.display = "none";
+  return total.toFixed(2);
 } 
 
+function basketIsEmpty() {
+  return purchasedProductsArray.length === 0;
+}
+
+
 function renderBasketCount() {
+  if (basketIsEmpty()) {
+    basketCounter.style.display = "none";
+    return;
+  } 
+
   basketCounter.style.display = "flex";
   basketCounter.innerText = purchasedProductsArray.length;
 }
@@ -81,7 +74,7 @@ function showAlert(product, price, counter) {
   alert(`
     Dodałeś ${product} za ${price} do koszyka. 
     Łącznie w koszyku: ${counter} produktów 
-    o wartości: ${totalPrice} PLN
+    o wartości: ${calculateTotalPrice()} PLN
     
     `);
   }
@@ -102,14 +95,11 @@ function showAlert(product, price, counter) {
       const title = product.querySelector(".products__boxes-desc__title").innerText; 
       
       const createdProduct = createProduct(id, title, price);
-      console.log(createdProduct);
 
       addProductToArray(createdProduct);
 
       
       const productCounter = purchasedProductsArray.length;
-      
-      addTotalValue(price);
       
       showAlert(title, priceText, productCounter);
       renderBasketCount();
