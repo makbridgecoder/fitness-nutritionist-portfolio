@@ -121,6 +121,17 @@ h2 {
  
 }
 
+.justify-cont-spc-between {
+  justify-content: center;
+
+}
+
+
+.justify-cont-spc-around {
+  justify-content: space-around;
+
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -128,8 +139,17 @@ h2 {
    
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
 .align-left {
   text-align: left;
+}
+
+.align-center {
+  align-items: center;
 }
 
 .navbar-list {
@@ -859,10 +879,7 @@ footer {
 
 }
 
-.justify-cont-spc-between {
-  justify-content: center;
 
-}
 
 
 .footer-list {
