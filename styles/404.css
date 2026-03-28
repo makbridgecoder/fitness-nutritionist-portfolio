@@ -1,0 +1,25 @@
+
+
+.img-container {
+  margin-top: 4rem;
+}
+
+.img-container img {
+  width: 20rem;
+  /*position: absolute;*/
+  top: 200px
+
+}
+
+.img-description {
+  color: var(--theme-color-black);
+  margin-top: 10rem;
+}
+
+
+
+.btn-cnt {
+margin-top: 5rem;
+}
+
+
