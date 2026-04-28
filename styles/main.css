@@ -40,6 +40,7 @@ html {
   --contact-me-navbar-bckg: rgb(57, 81, 68);
   --contact-me-textarea: rgb(216, 210, 194);
   --contact-me-forms: rgb(250, 247, 240);
+  --basket-light-gray: rgb(112, 112, 112, 0.4);
   line-height: 1.6;
   scroll-behavior: smooth;
 

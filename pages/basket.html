@@ -101,8 +101,6 @@
           <div class="row justify-content-center">
             <h2>Twój koszyk</h2>
           </div>
-          <div class="row justify-space-between align-center">Produkty
-          </div>
           <div class="column justify-content-center" >
             <div class="modulo-hero-left-container left-container">
               <div class="basket-products-title">
@@ -124,7 +122,9 @@
                   </div>
                   <div class="basket-product-actions">
                     <div class="basket-product_quantity-cnt">
-                      <input type="number" value="1" min="1" max="10" step="1">
+                      <button class="subtraction_btn">&#8722;</button>
+                      <input name="product-quantity" type="number" value="1" min="0" max="10" inputmode="numeric">
+                      <button class="addition_btn">+</button>
                     </div>
                     <div class="basket-product_subtotal-cnt">
                       <span>Subtotal</span>
@@ -140,7 +140,7 @@
                 <div class="basket-product-item">
                   <div class="basket-product-top">
                     <div class="basket-product__img-cnt">
-                      <a href="/pages/shop.html/" class="basket-product__img-link">
+                      <a href="shop.html" class="basket-product__img-link">
                         <img src="../images/shop_box_images.jpg" class="basket-cart__img" alt="Jeden z productów dostępnych w sprzedaży">
                       </a>
                     </div>
@@ -151,7 +151,9 @@
                   </div>
                   <div class="basket-product-actions">
                     <div class="basket-product_quantity-cnt">
-                      <input type="number" value="1" min="1" max="10" step="1">
+                      <button class="subtraction_btn">&#8722;</button>
+                      <input name="product-quantity" type="number" value="1" min="0" max="10">
+                      <button class="addition_btn">+</button>
                     </div>
                     <div class="basket-product_subtotal-cnt">
                       <span>Subtotal</span>
@@ -165,7 +167,12 @@
                   </div>
                 </div>
               </div>
-              <div class="shopping-continue-link"><a href="shop.html">Kontynuj zakupy</a></div>
+              <div class="basket-btns-cnt">
+                <div class="shopping-continue-link"><a href="shop.html">Kontynuj zakupy</a>
+                </div>
+                <div><button class="act-basket-btn">Zaaktualizuj koszyk</button>
+                </div>
+              </div>
             </div>
             <div class="modulo-hero-right-container right-container">
               <div></div>
@@ -184,7 +191,6 @@
                 <div class="discount-value">Uzyskana zniżka <span>24</span>PLN</div>
                 <div class="basket-price-summary">
                   <div>Wartość produktów:<span> 25</span> PLN</div>
-                  <div>Wartość produktów ze zniżką:<span> 25</span> PLN</div>
                   <div class="final-price">Wartość ostateczna:<span> 25</span> PLN</div>
                 </div>
                 <button class="final-btn white-text">Przejdź do płatności</button>
