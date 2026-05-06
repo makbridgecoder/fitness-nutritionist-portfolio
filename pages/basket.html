@@ -105,68 +105,10 @@
             <div class="modulo-hero-left-container left-container">
               <div class="basket-products-title">
                 <h3>Produkty</h3>
-                <div id="basket-item-counter">ilość produktów:</div>
+                <div id="basket-item-counter">ilość produktów: <span id="basket-item-counter_number"></span></div>
               </div>
-              <div class="basket-products">
-                <div class="basket-product-item">
-                  <div class="basket-product-top">
-                    <div class="basket-product__img-cnt">
-                      <a href="/pages/shop.html/" class="basket-product__img-link">
-                        <img src="../images/shop_box_images.jpg" class="basket-cart__img" alt="Jeden z productów dostępnych w sprzedaży">
-                      </a>
-                    </div>
-                    <div class="basket-product-content">
-                      <h4 class="basket-product_title">Program HIIT na spalanie tkanki tłuszczowej</h4>
-                      <div class="basket-product_price">99PLN</div>
-                    </div>
-                  </div>
-                  <div class="basket-product-actions">
-                    <div class="basket-product_quantity-cnt">
-                      <button class="subtraction_btn">&#8722;</button>
-                      <input name="product-quantity" type="number" value="1" min="0" max="10" inputmode="numeric">
-                      <button class="addition_btn">+</button>
-                    </div>
-                    <div class="basket-product_subtotal-cnt">
-                      <span>Subtotal</span>
-                      <span>99PLN</span>
-                    </div>
-                    <div class="basket-product_delete-cnt">
-                      <div class="basket-product_delete-btn">
-                        <object data="../icons/trash.svg" type="image/svg+xml">Icon</object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="basket-product-item">
-                  <div class="basket-product-top">
-                    <div class="basket-product__img-cnt">
-                      <a href="shop.html" class="basket-product__img-link">
-                        <img src="../images/shop_box_images.jpg" class="basket-cart__img" alt="Jeden z productów dostępnych w sprzedaży">
-                      </a>
-                    </div>
-                    <div class="basket-product-content">
-                      <h4 class="basket-product_title">Program HIIT na spalanie tkanki tłuszczowej</h4>
-                      <div class="basket-product_price">99PLN</div>
-                    </div>
-                  </div>
-                  <div class="basket-product-actions">
-                    <div class="basket-product_quantity-cnt">
-                      <button class="subtraction_btn">&#8722;</button>
-                      <input name="product-quantity" type="number" value="1" min="0" max="10">
-                      <button class="addition_btn">+</button>
-                    </div>
-                    <div class="basket-product_subtotal-cnt">
-                      <span>Subtotal</span>
-                      <span>99PLN</span>
-                    </div>
-                    <div class="basket-product_delete-cnt">
-                      <div class="basket-product_delete-btn">
-                        <object data="../icons/trash.svg" type="image/svg+xml">Icon</object>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ul class="basket-products">
+              </ul>
               <div class="basket-btns-cnt">
                 <div class="shopping-continue-link"><a href="shop.html">Kontynuj zakupy</a>
                 </div>
@@ -206,7 +148,7 @@
         <div class="row justify-cont-spc-between">
           
           <div class="footer-logo-ct footer-ct">
-            <img src="../icons/logo/PM_logo_bigger_nobackground_v4.png" alt="Piotr Makuch logo" class="logo">
+            <img src="../icons/logo/PM_logo_bigger_nobackground_v4.png" alt="Makuch logo" class="logo">
             <p>Potrzebujesz wsparcia?</p>
             <p>Skontaktuj się ze mną</p>
             <p>Umów bezpłatną konsultację</p>

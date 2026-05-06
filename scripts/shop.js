@@ -17,6 +17,7 @@ function createProduct(id, name, price) {
     id: id,
     name: name,
     price: price
+    
   };
 
 }
@@ -75,7 +76,6 @@ function showAlert(product, price, counter) {
     Dodałeś ${product} za ${price} do koszyka. 
     Łącznie w koszyku: ${counter} produktów 
     o wartości: ${calculateTotalPrice()} PLN
-    
     `);
   }
   
@@ -93,9 +93,11 @@ function showAlert(product, price, counter) {
       const price = textToNumber(priceText);
       
       const title = product.querySelector(".products__boxes-desc__title").innerText; 
-      
+/*
+      const img = product.querySelector(".product_img");
+      console.log(img);
+      */
       const createdProduct = createProduct(id, title, price);
-
       addProductToArray(createdProduct);
 
       
