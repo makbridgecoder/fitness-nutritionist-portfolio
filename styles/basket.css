@@ -78,6 +78,7 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   justify-content: space-between;
   list-style-type: none;
+  padding-inline-start: 0;
 }
 
 .basket-product-item {
@@ -103,6 +104,8 @@ input::-webkit-inner-spin-button {
   padding: 0.5rem 0.9rem;
   border: 1.5px solid var(--shop-product__button);
 }
+
+
 
 .shop-entrance .addition_btn {
   border-radius: 0 96px 96px 0;
@@ -146,9 +149,16 @@ input::-webkit-inner-spin-button {
 }
 
 .basket-product_delete-cnt {
-  align-items: flex-end;
+  align-items: center;
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: auto;
+  padding: 10px 15px;
+  align-content: center;
+  transition: background-color 50ms ease-in-out;
+}
+
+.basket-product_delete-cnt:active {
+  background-color: var(--shop-product__button);
 }
 
 .basket-product_delete-btn {

@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll(".shop_product_button");
-const basketCounter = document.getElementById("basket-product-number");
+let basketCounter = document.getElementById("basket-product-number");
 
 let purchasedProductsArray = [];
 
@@ -12,11 +12,12 @@ function textToNumber(e) {
 }
 
 
-function createProduct(id, name, price) {
+function createProduct(id, name, price, img) {
   return {
     id: id,
     name: name,
-    price: price
+    price: price,
+    img: img
     
   };
 
@@ -44,7 +45,6 @@ function getItemFromLocalStorage() {
 }
 
 getItemFromLocalStorage();
-
 
 function calculateTotalPrice() {
  let total = 0;
@@ -93,11 +93,11 @@ function showAlert(product, price, counter) {
       const price = textToNumber(priceText);
       
       const title = product.querySelector(".products__boxes-desc__title").innerText; 
-/*
-      const img = product.querySelector(".product_img");
-      console.log(img);
-      */
-      const createdProduct = createProduct(id, title, price);
+
+      //search for the img
+      const img = product.querySelector(".product_img").getAttribute("src");
+      
+      const createdProduct = createProduct(id, title, price, img);
       addProductToArray(createdProduct);
 
       
@@ -105,6 +105,7 @@ function showAlert(product, price, counter) {
       
       showAlert(title, priceText, productCounter);
       renderBasketCount();
+      console.log(purchasedProductsArray)
     });
 
 });
