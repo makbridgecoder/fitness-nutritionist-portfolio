@@ -103,7 +103,7 @@ function renderBasketProducts(items) {
     </div>
     <div class="basket-product_delete-cnt">
     <div class="basket-product_delete-btn">
-    <object data="../icons/trash.svg" type="image/svg+xml">Icon</object>
+    <img src="../icons/trash.svg" type="image/svg+xml"></img>
     </div>
     </div>
     </div>
@@ -155,12 +155,5 @@ deleteButton.forEach((button) => {
   });
   
 })
-
-
-//quantity, start from here, make a commit first
-
-const quantity = document.querySelectorAll(".product-quantity"); 
-
-quantity.style.backgroundcolor =  "red";
 
 
