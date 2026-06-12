@@ -12,13 +12,13 @@ function textToNumber(e) {
 }
 
 
-function createProduct(id, name, price, img) {
+function createProduct(id, name, price, img, amount) {
   return {
     id: id,
     name: name,
     price: price,
-    img: img
-    
+    img: img,
+    amount: amount
   };
 
 }
@@ -97,7 +97,9 @@ function showAlert(product, price, counter) {
       //search for the img
       const img = product.querySelector(".product_img").getAttribute("src");
       
-      const createdProduct = createProduct(id, title, price, img);
+      let amount = 1;
+
+      const createdProduct = createProduct(id, title, price, img, amount);
       addProductToArray(createdProduct);
 
       
