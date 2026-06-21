@@ -6,12 +6,11 @@
 //6. użyj kodu -> alert
 //7. przejdz do platności - how to solve this?
 //8. declination of numbers in the alert
-//9. 
+//9. make saparete addButtons and subtractionsButtons event handlers and that maka a commit, later transoform it in one even handler
+//10. where should I use a arrow funcions within those code?
 
 const productAmount = document.getElementById("basket-item-counter_number");
 const basketProductList = document.querySelector(".basket-products"); //list container
-const additionButtons = document.querySelectorAll(".addition_btn"); 
-const subtractionButtons = document.querySelectorAll(".subtraction_btn"); 
 
 
 let purchasedProductsArrayLength = purchasedProductsArray.length;
@@ -20,37 +19,24 @@ productAmount.textContent = purchasedProductsArrayLength;
 
 console.log("Array at the beginning: ", purchasedProductsArray);
 
-
 function getItemFromLocalStorage() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if(!stored) return;
-  
   purchasedProductsArray = JSON.parse(stored);
 }
+
 
 function addArraytoLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-function removeItemFromArray(arr, idProperty) { 
-  const newArray = arr.filter(item => item.id.value !== Number(idProperty));
-  console.log(newArray);
-  return newArray;
-}
-
-addArraytoLocalStorage(); //Is this necessery here?
-
 function cleanArray() {
   purchasedProductsArray = [];
 }
 
-
 function cleanRenderedList(element) {
   element.remove();
 }
-
-
-console.log("Before rendering: ", purchasedProductsArray);
 
 function renderBasketProducts(items) {
   items.forEach(item => {
@@ -72,7 +58,7 @@ function renderBasketProducts(items) {
     <div class="basket-product-actions">
     <div class="basket-product_quantity-cnt">
     <button class="subtraction_btn">&#8722;</button>
-    <input name="product-quantity" class="item-quantity" type="number" value="1" min="0" max="10" inputmode="numeric">
+    <input name="product-quantity" class="item-quantity" type="number" value="${item.amount}" min="1" max="10" inputmode="numeric">
     <button class="addition_btn">+</button>
     </div>
     <div class="basket-product_subtotal-cnt">
@@ -86,16 +72,11 @@ function renderBasketProducts(items) {
     </div>
     </div>
     </div>
-    
     `;
     
     basketProductList.appendChild(li);
   });
-  
-  
-  
 }
-
 
 renderBasketProducts(purchasedProductsArray);
 
@@ -105,27 +86,14 @@ const deleteButton = document.querySelectorAll(".basket-product_delete-cnt"); //
 
 deleteButton.forEach((button) => {
   button.addEventListener("click", (e) => {
-    
     const item = e.target.closest(".basket-product-item"); 
-    console.log(item);
-    
     const buttonEl = item.querySelector(".basket-product_delete-cnt"); //why it doesn't work if i click on the button icon? only cnt work
-    
     const id = item.dataset.id;
-    console.log("id: ",id); // i have the product ID!!!
-    
-    
     //remove item from purchasedProductArray
-    console.log("Before remove from the array", purchasedProductsArray);
     purchasedProductsArray = purchasedProductsArray.filter(item => item.id != id);
-    console.log("after remove from the array", purchasedProductsArray);
     
     addArraytoLocalStorage();
-    console.log("after adding to LS", purchasedProductsArray);
-
-    
     cleanRenderedList(item);
-    
     renderBasketCount();
     productAmount.textContent = purchasedProductsArray.length;
     
@@ -133,92 +101,121 @@ deleteButton.forEach((button) => {
   
 })
 
-
 // Quantity section
-// 1. How can I save current quantity? -LS?
-//function returns an object from purchedProductsArray
 function findItemById(array, id) {
   const arrayItem = array.find(item => item.id === id);
-  console.log(arrayItem);
   return arrayItem;
 }
 
 function getItemQuantity(item) {
   const itemAmount = item.amount;
-  console.log("itemAmount", itemAmount);
   return itemAmount;
 }
 
 //increaseQuantity without updating purchasedProductsArray
-function increaseQuantity(item, amount) {
-  const itemAmount = item.amount
-  const newQuantity = amount + 1;
-  console.log("New quantity:", newQuantity);
-  return newQuantity;
+function increaseQuantity(amount) {
+  const quantity = amount + 1;
+  return Number(quantity);
+  
 }
 
-function renderItemQuantity(varible, amount) {
-
-}
-
+function decreaseQuantity(amount) {
+  
+  const amountNumber = Number(amount);
+  if (amountNumber >= 2) {
+    const quantity = amount - 1;
+    return Number(quantity);
+  }  else {
+    return;
+  }};
+  
+  //import { renderBasketCount } from "./shop.js";
+  
 /*function renderSubtotal(item ) {
   const element = item.
-}*/
-
+  }*/
+  
 function updateItemQuantityInArray(array, itemID, amount) {
-  const itemIndex = array.findIndex(item => item.id === itemID);// findIndex find only first element, i can't have two elements with the same id, only the quantity should change
-  console.log("index:", itemIndex);
+  const itemIndex = array.findIndex(item => item.id === itemID);  // findIndex find only first element, i can't have two elements with the same id, only the quantity should change
+  if (itemIndex == -1) {
+    return;
+  } 
+  
   array[itemIndex].amount = amount;
   return itemIndex;
-
-
 }
 
+function findIndex(arr, itemId) {
+  const index = arr.findIndex((item) => item.id === itemId); 
+  return index;
+}
 
+function removeItemFromArray(arr, itemIndex) { 
+  const removed = arr.splice(itemIndex, 1); //remove one element with itemIndex from array
+  return removed;
+  
+}
 
-//quantity section
-const addButton = document.querySelectorAll(".addition_btn");
-
-addButton.forEach((button) => {
+function calculateSubtotal(amount, price) {
+ return amount * price; 
+}
+  
+  //quantity section
+const addButtons = document.querySelectorAll(".addition_btn");
+  
+addButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const item = e.target.closest(".basket-product-item");
-
     const itemID = item.dataset.id;
-    console.log("itemID", itemID);
-
-    //Find item in purchedProductsArray based on itemID, do I need this?
-    const arraysItem = findItemById(purchasedProductsArray, itemID);
-    let amount = getItemQuantity(arraysItem); //this is amount taken from the purchasedProductArray
-    
-    //increase quantity by one 
-    amount = increaseQuantity(itemID, amount);
-    console.log("quantity:", amount); //ok
-
-    //render -> add to array -> set in LS
-    renderItemQuantity(amount); 
-    console.log(purchasedProductsArray);
-    
+    const arrayItem = findItemById(purchasedProductsArray, itemID);
+    let amount = getItemQuantity(arrayItem); //this is amount taken from the purchasedProductArray
+    amount = increaseQuantity(amount);
     const inputQuantity = item.querySelector(".item-quantity");
     
-    console.log("quantity before assign: ", inputQuantity.value);
     inputQuantity.value = amount; 
     
     const index = updateItemQuantityInArray(purchasedProductsArray, itemID, amount);
-
-    console.log("amount in the array after input change", purchasedProductsArray[index].amount);
     
-
+    addArraytoLocalStorage();
+    
     //renderSubtotal();
     
-
-    // add to purchasedArray
-    // change only value on the webpage, do not render again?
-    // maybe add to LS(but how to do this? --> add property to object?)
-
-
-    
-  })
-
+  });
+  
 }
+  
+);
 
-)
+const subtractionButtons = document.querySelectorAll(".subtraction_btn"); 
+
+subtractionButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const item = e.target.closest(".basket-product-item"); 
+    const itemID = item.dataset.id;
+    const arrayItem = findItemById(purchasedProductsArray, itemID);
+    let amount  = getItemQuantity(arrayItem); 
+    const inputQuantity = item.querySelector(".item-quantity");
+    const price = arrayItem.price;
+    console.log(amount, price);
+    if (amount >= 2) {
+      amount = decreaseQuantity(amount);
+      inputQuantity.value = amount;
+      const index = updateItemQuantityInArray(purchasedProductsArray, itemID, amount);
+      addArraytoLocalStorage();
+      return;
+    } else { 
+      cleanRenderedList(item);
+      removeItemFromArray(purchasedProductsArray, findIndex(purchasedProductsArray, itemID));
+      renderBasketCount();
+      //updateBasketCounter_number();
+
+      addArraytoLocalStorage();
+    }
+
+  
+});
+
+});
+
+
+

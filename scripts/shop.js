@@ -71,6 +71,8 @@ function renderBasketCount() {
   basketCounter.innerText = purchasedProductsArray.length;
 }
 
+
+
 function showAlert(product, price, counter) {
   alert(`
     Dodałeś ${product} za ${price} do koszyka. 
