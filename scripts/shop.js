@@ -1,10 +1,20 @@
-const buttons = document.querySelectorAll(".shop_product_button");
-let basketCounter = document.getElementById("basket-product-number");
+import {
+  STORAGE_KEY,
+  getItemFromLocalStorage,
+  basketIsEmpty,
+  basketCounter, 
+  renderBasketCount
+} from "./helpers.js";
 
-let purchasedProductsArray = [];
+
+
+const buttons = document.querySelectorAll(".shop_product_button");
+let purchasedProductsArray = getItemFromLocalStorage();
+
+renderBasketCount(purchasedProductsArray);
 
 function getTheText(e) {
-   return e.innerText;
+  return e.innerText;
 }
 
 function textToNumber(e) {
@@ -20,31 +30,19 @@ function createProduct(id, name, price, img, amount) {
     img: img,
     amount: amount
   };
-
+  
 }
 
 function addProductToArray(product) {
-   purchasedProductsArray.push(product);
-   addItemToLocalStorage();
+  purchasedProductsArray.push(product);
+  addItemToLocalStorage();
 }
 
-// create a local storage
-const STORAGE_KEY = "basketProducts";
 
 function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-function getItemFromLocalStorage() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) return;
-  
-  purchasedProductsArray = JSON.parse(stored);
-  renderBasketCount();
-  
-}
-
-getItemFromLocalStorage();
 
 function calculateTotalPrice() {
  let total = 0;
@@ -55,21 +53,6 @@ function calculateTotalPrice() {
 
   return total.toFixed(2);
 } 
-
-function basketIsEmpty() {
-  return purchasedProductsArray.length === 0;
-}
-
-
-function renderBasketCount() {
-  if (basketIsEmpty()) {
-    basketCounter.style.display = "none";
-    return;
-  } 
-
-  basketCounter.style.display = "flex";
-  basketCounter.innerText = purchasedProductsArray.length;
-}
 
 
 
@@ -108,10 +91,8 @@ function showAlert(product, price, counter) {
       const productCounter = purchasedProductsArray.length;
       
       showAlert(title, priceText, productCounter);
-      renderBasketCount();
+      renderBasketCount(purchasedProductsArray);
       console.log(purchasedProductsArray)
     });
 
 });
-
-

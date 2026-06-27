@@ -8,22 +8,32 @@
 //8. declination of numbers in the alert
 //9. make saparete addButtons and subtractionsButtons event handlers and that maka a commit, later transoform it in one even handler
 //10. where should I use a arrow funcions within those code?
+//11. WHen i cliced a basket, first i saw a 0 than the corrent items number
+
+import {
+  basketCounter,
+  STORAGE_KEY
+} from "./helpers.js";
+
+import {
+  getItemFromLocalStorage,
+  calculateTotalPrice, 
+  renderBasketCount,
+  basketIsEmpty
+} from "./helpers.js";
+
+
 
 const productAmount = document.getElementById("basket-item-counter_number");
 const basketProductList = document.querySelector(".basket-products"); //list container
-
+let purchasedProductsArray = getItemFromLocalStorage();
+ 
 
 let purchasedProductsArrayLength = purchasedProductsArray.length;
 
 productAmount.textContent = purchasedProductsArrayLength;
 
 console.log("Array at the beginning: ", purchasedProductsArray);
-
-function getItemFromLocalStorage() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if(!stored) return;
-  purchasedProductsArray = JSON.parse(stored);
-}
 
 
 function addArraytoLocalStorage() {
@@ -79,6 +89,7 @@ function renderBasketProducts(items) {
 }
 
 renderBasketProducts(purchasedProductsArray);
+renderBasketCount(purchasedProductsArray);
 
 //and afer rendering:
 
@@ -89,12 +100,12 @@ deleteButton.forEach((button) => {
     const item = e.target.closest(".basket-product-item"); 
     const buttonEl = item.querySelector(".basket-product_delete-cnt"); //why it doesn't work if i click on the button icon? only cnt work
     const id = item.dataset.id;
-    //remove item from purchasedProductArray
+    //remove item from purchasedProductsArray
     purchasedProductsArray = purchasedProductsArray.filter(item => item.id != id);
     
     addArraytoLocalStorage();
     cleanRenderedList(item);
-    renderBasketCount();
+    renderBasketCount(purchasedProductsArray);
     productAmount.textContent = purchasedProductsArray.length;
     
   });
@@ -129,7 +140,6 @@ function decreaseQuantity(amount) {
     return;
   }};
   
-  //import { renderBasketCount } from "./shop.js";
   
 /*function renderSubtotal(item ) {
   const element = item.
@@ -168,7 +178,7 @@ addButtons.forEach((button) => {
     const item = e.target.closest(".basket-product-item");
     const itemID = item.dataset.id;
     const arrayItem = findItemById(purchasedProductsArray, itemID);
-    let amount = getItemQuantity(arrayItem); //this is amount taken from the purchasedProductArray
+    let amount = getItemQuantity(arrayItem); //this is amount taken from the purchasedProductsArray
     amount = increaseQuantity(amount);
     const inputQuantity = item.querySelector(".item-quantity");
     
@@ -206,7 +216,7 @@ subtractionButtons.forEach((button) => {
     } else { 
       cleanRenderedList(item);
       removeItemFromArray(purchasedProductsArray, findIndex(purchasedProductsArray, itemID));
-      renderBasketCount();
+      renderBasketCount(purchasedProductsArray);
       //updateBasketCounter_number();
 
       addArraytoLocalStorage();
@@ -216,6 +226,5 @@ subtractionButtons.forEach((button) => {
 });
 
 });
-
 
 
