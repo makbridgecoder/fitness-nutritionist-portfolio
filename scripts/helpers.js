@@ -34,3 +34,28 @@ export function renderBasketCount(array) {
   basketCounter.style.display = "flex";
   basketCounter.innerText = productsQuantity;
 }
+
+export function findIndex(arr, itemId) {
+  const index = arr.findIndex((item) => item.id === itemId); 
+  return index;
+}
+
+export function findItemById(array, id) {
+  const arrayItem = array.find(item => item.id === id);
+  return arrayItem;
+}
+
+export function getItemQuantity(item) {
+  const itemAmount = item.amount;
+  return itemAmount;
+}
+
+export function increaseQuantity(amount) {
+  const quantity = amount + 1;
+  return Number(quantity);
+  
+}
+
+export function updateItemQuantityInArray(array, index, amount) {
+  array[index].amount = amount;
+} 

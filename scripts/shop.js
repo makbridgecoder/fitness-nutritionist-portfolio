@@ -1,8 +1,17 @@
+//check if product is already in the basket, if yes => change quantity
+// or add new product
+
 import {
+
   STORAGE_KEY,
-  getItemFromLocalStorage,
-  basketIsEmpty,
   basketCounter, 
+  getItemFromLocalStorage,
+  findIndex,
+  findItemById,
+  getItemQuantity,
+  increaseQuantity,
+  updateItemQuantityInArray,
+  basketIsEmpty, //use this for if to check if the item is in the basket
   renderBasketCount
 } from "./helpers.js";
 
@@ -43,7 +52,7 @@ function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-
+//use for the alert
 function calculateTotalPrice() {
  let total = 0;
   purchasedProductsArray.forEach(product => {
@@ -64,28 +73,64 @@ function showAlert(product, price, counter) {
     `);
   }
   
-  
+
+  function productIsInTheArray(arrayPar, idPar) {
+    const item = arrayPar.find(item => item.id === idPar); // find only first item
+    if (item) { 
+      console.log("product is allready in the array");
+      //i can use findIndex to return index; 
+      return true;
+    }  else {
+      console.log("product is not in the array")
+      return false;
+    }
+  }
+
   
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
+
+      
       const product = e.target.closest(".shop-product__main-box");
       if (!product) return;
       
       const id = product.dataset.id;
-      
-      const priceContainer = product.querySelector(".products__boxes-desc__price"); 
-      const priceText = getTheText(priceContainer);
-      const price = textToNumber(priceText);
-      
-      const title = product.querySelector(".products__boxes-desc__title").innerText; 
 
-      //search for the img
-      const img = product.querySelector(".product_img").getAttribute("src");
+      console.log("before test: ", purchasedProductsArray)
       
-      let amount = 1;
 
-      const createdProduct = createProduct(id, title, price, img, amount);
-      addProductToArray(createdProduct);
+      if (productIsInTheArray(purchasedProductsArray, id)) {
+
+        const arrayItem = findItemById(purchasedProductsArray, id); //find() method find only firs element
+        let amount = getItemQuantity(arrayItem); //get item from the object
+        amount = increaseQuantity(amount); // increase quantity by one 
+        const index = findIndex(purchasedProductsArray, id);
+        updateItemQuantityInArray(purchasedProductsArray, index, amount); //update quantity in the purchedProductsArray
+        
+        //update quantity of const inputQuantity
+
+        //add to local storage
+        
+        return
+      } 
+
+        const priceContainer = product.querySelector(".products__boxes-desc__price"); 
+        const priceText = getTheText(priceContainer);
+        const price = textToNumber(priceText);
+        
+        const title = product.querySelector(".products__boxes-desc__title").innerText; 
+  
+        //search for the img
+        const img = product.querySelector(".product_img").getAttribute("src");
+        
+        let amount = 1;
+  
+        const createdProduct = createProduct(id, title, price, img, amount);
+        addProductToArray(createdProduct);
+        
+      
+
+      
 
       
       const productCounter = purchasedProductsArray.length;

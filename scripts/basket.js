@@ -1,7 +1,8 @@
-//1. build a quantity button functionality
-//1.1 i user add product twice, subtotal and quantity should change not appears a new product on ul list
+
 //1.2 the same with deleting items - if product is
 //4. zaaktualizuj koszyk button
+//1. build a quantity button functionality
+//1.1 i user add product twice, subtotal and quantity should change not appears a new product on ul list
 //5. subtotal functionality
 //6. użyj kodu -> alert
 //7. przejdz do platności - how to solve this?
@@ -9,6 +10,14 @@
 //9. make saparete addButtons and subtractionsButtons event handlers and that maka a commit, later transoform it in one even handler
 //10. where should I use a arrow funcions within those code?
 //11. WHen i cliced a basket, first i saw a 0 than the corrent items number
+//12. how to implement basket counter in the other subpage?
+
+//currentyly working on:
+//why updateItemQuantityInArray doesn't work correctly?
+// I need some function to redner quantity in inputQuantity
+// verify addArraytoLocalStorage, in shop.js similar function has different name,
+//c.d. move both to helpers.js
+//
 
 import {
   basketCounter,
@@ -17,9 +26,14 @@ import {
 
 import {
   getItemFromLocalStorage,
-  calculateTotalPrice, 
+  calculateTotalPrice, // do i need this in basket.js?
   renderBasketCount,
-  basketIsEmpty
+  basketIsEmpty, 
+  findIndex, 
+  findItemById,
+  getItemQuantity,
+  increaseQuantity,
+  updateItemQuantityInArray
 } from "./helpers.js";
 
 
@@ -61,7 +75,7 @@ function renderBasketProducts(items) {
     </a>
     </div>
     <div class="basket-product-content">
-    <h4 class="basket-product_title">${item.name}</h4>${item.id},${item.amount}
+    <h4 class="basket-product_title">${item.name}</h4>itemID:${item.id},amount:${item.amount}
     <div class="basket-product_price">${item.price}PLN</div>
     </div>
     </div>
@@ -73,7 +87,7 @@ function renderBasketProducts(items) {
     </div>
     <div class="basket-product_subtotal-cnt">
     <span>Subtotal</span>
-    <span>99PLN</span>
+    <span id="subtotal-price">99PLN</span>
     </div>
     <div class="basket-product_delete-cnt">
     <div class="basket-product_delete-btn">
@@ -112,24 +126,6 @@ deleteButton.forEach((button) => {
   
 })
 
-// Quantity section
-function findItemById(array, id) {
-  const arrayItem = array.find(item => item.id === id);
-  return arrayItem;
-}
-
-function getItemQuantity(item) {
-  const itemAmount = item.amount;
-  return itemAmount;
-}
-
-//increaseQuantity without updating purchasedProductsArray
-function increaseQuantity(amount) {
-  const quantity = amount + 1;
-  return Number(quantity);
-  
-}
-
 function decreaseQuantity(amount) {
   
   const amountNumber = Number(amount);
@@ -141,25 +137,6 @@ function decreaseQuantity(amount) {
   }};
   
   
-/*function renderSubtotal(item ) {
-  const element = item.
-  }*/
-  
-function updateItemQuantityInArray(array, itemID, amount) {
-  const itemIndex = array.findIndex(item => item.id === itemID);  // findIndex find only first element, i can't have two elements with the same id, only the quantity should change
-  if (itemIndex == -1) {
-    return;
-  } 
-  
-  array[itemIndex].amount = amount;
-  return itemIndex;
-}
-
-function findIndex(arr, itemId) {
-  const index = arr.findIndex((item) => item.id === itemId); 
-  return index;
-}
-
 function removeItemFromArray(arr, itemIndex) { 
   const removed = arr.splice(itemIndex, 1); //remove one element with itemIndex from array
   return removed;
@@ -180,12 +157,14 @@ addButtons.forEach((button) => {
     const arrayItem = findItemById(purchasedProductsArray, itemID);
     let amount = getItemQuantity(arrayItem); //this is amount taken from the purchasedProductsArray
     amount = increaseQuantity(amount);
+
     const inputQuantity = item.querySelector(".item-quantity");
     
-    inputQuantity.value = amount; 
-    
-    const index = updateItemQuantityInArray(purchasedProductsArray, itemID, amount);
-    
+    inputQuantity.value = amount;     
+    const index = findIndex(purchasedProductsArray, itemID); 
+
+    updateItemQuantityInArray(purchasedProductsArray, index, amount);
+    let newArray = updateItemQuantityInArray(purchasedProductsArray, index, amount);
     addArraytoLocalStorage();
     
     //renderSubtotal();
@@ -206,11 +185,12 @@ subtractionButtons.forEach((button) => {
     let amount  = getItemQuantity(arrayItem); 
     const inputQuantity = item.querySelector(".item-quantity");
     const price = arrayItem.price;
-    console.log(amount, price);
     if (amount >= 2) {
       amount = decreaseQuantity(amount);
       inputQuantity.value = amount;
-      const index = updateItemQuantityInArray(purchasedProductsArray, itemID, amount);
+
+      const index = findIndex(purchasedProductsArray, itemID);
+      updateItemQuantityInArray(purchasedProductsArray, index, amount);
       addArraytoLocalStorage();
       return;
     } else { 
@@ -220,6 +200,7 @@ subtractionButtons.forEach((button) => {
       //updateBasketCounter_number();
 
       addArraytoLocalStorage();
+      productAmount.textContent = purchasedProductsArray.length;
     }
 
   
