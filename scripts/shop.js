@@ -44,7 +44,6 @@ function createProduct(id, name, price, img, amount) {
 
 function addProductToArray(product) {
   purchasedProductsArray.push(product);
-  addItemToLocalStorage();
 }
 
 
@@ -106,8 +105,8 @@ function showAlert(product, price, counter) {
         amount = increaseQuantity(amount); // increase quantity by one 
         const index = findIndex(purchasedProductsArray, id);
         updateItemQuantityInArray(purchasedProductsArray, index, amount); //update quantity in the purchedProductsArray
-        
-        //update quantity of const inputQuantity
+        console.log("You have already this product in your basket")
+        addItemToLocalStorage();
 
         //add to local storage
         
@@ -127,9 +126,8 @@ function showAlert(product, price, counter) {
   
         const createdProduct = createProduct(id, title, price, img, amount);
         addProductToArray(createdProduct);
+        addItemToLocalStorage();
         
-      
-
       
 
       

@@ -1,9 +1,6 @@
 
-//1.2 the same with deleting items - if product is
-//4. zaaktualizuj koszyk button
 //1. build a quantity button functionality
-//1.1 i user add product twice, subtotal and quantity should change not appears a new product on ul list
-//5. subtotal functionality
+//1.1. subtotal functionality
 //6. użyj kodu -> alert
 //7. przejdz do platności - how to solve this?
 //8. declination of numbers in the alert
@@ -11,10 +8,10 @@
 //10. where should I use a arrow funcions within those code?
 //11. WHen i cliced a basket, first i saw a 0 than the corrent items number
 //12. how to implement basket counter in the other subpage?
-
+//13. create alert "you have already this product in your basket"
+//13.1 and then display little window with two approaches: add or quit
 //currentyly working on:
-//why updateItemQuantityInArray doesn't work correctly?
-// I need some function to redner quantity in inputQuantity
+//productIsInTheArray() in shop.js, 
 // verify addArraytoLocalStorage, in shop.js similar function has different name,
 //c.d. move both to helpers.js
 //
