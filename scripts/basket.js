@@ -1,20 +1,24 @@
-
-//1. build a quantity button functionality
-//1.1. subtotal functionality
-//6. użyj kodu -> alert
+//currentyly working on:
+//0. basketProductList issue
+//
+//updateBasketBtn
+//1.1. subtotal functionality / update basket
+//6. użyj kodu zniżkowego-> alert
 //7. przejdz do platności - how to solve this?
 //8. declination of numbers in the alert
 //9. make saparete addButtons and subtractionsButtons event handlers and that maka a commit, later transoform it in one even handler
 //10. where should I use a arrow funcions within those code?
 //11. WHen i cliced a basket, first i saw a 0 than the corrent items number
 //12. how to implement basket counter in the other subpage?
-//13. create alert "you have already this product in your basket"
 //13.1 and then display little window with two approaches: add or quit
-//currentyly working on:
-//productIsInTheArray() in shop.js, 
-// verify addArraytoLocalStorage, in shop.js similar function has different name,
 //c.d. move both to helpers.js
-//
+// verify addArraytoLocalStorage, in shop.js similar function has different name,
+/*why hamburger icon doesn't work in basket.html but works in shop.html?:
+1. shop.html has script tag with scipt.js
+2. i need to move this to helpers.js maybe? or leave this in sript.js but id modules? and imort funcitons
+this could be better idea, but do this after i finish basket funcitonality, then change branch and refactor this in all subpages
+ 
+*/
 
 import {
   basketCounter,
@@ -37,14 +41,13 @@ import {
 
 const productAmount = document.getElementById("basket-item-counter_number");
 const basketProductList = document.querySelector(".basket-products"); //list container
+const updateBasketBtn = document.querySelector(".act-basket-btn");
 let purchasedProductsArray = getItemFromLocalStorage();
- 
 
 let purchasedProductsArrayLength = purchasedProductsArray.length;
 
 productAmount.textContent = purchasedProductsArrayLength;
 
-console.log("Array at the beginning: ", purchasedProductsArray);
 
 
 function addArraytoLocalStorage() {
@@ -83,8 +86,11 @@ function renderBasketProducts(items) {
     <button class="addition_btn">+</button>
     </div>
     <div class="basket-product_subtotal-cnt">
-    <span>Subtotal</span>
-    <span id="subtotal-price">99PLN</span>
+    <span class="subtotalTitle">Subtotal</span>
+    <div>
+    <span class="subtotal-price">${item.subtotal}</span><span> PLN</span> 
+
+    </div>
     </div>
     <div class="basket-product_delete-cnt">
     <div class="basket-product_delete-btn">
@@ -134,19 +140,19 @@ function decreaseQuantity(amount) {
   }};
   
   
-function removeItemFromArray(arr, itemIndex) { 
-  const removed = arr.splice(itemIndex, 1); //remove one element with itemIndex from array
-  return removed;
+  function removeItemFromArray(arr, itemIndex) { 
+    const removed = arr.splice(itemIndex, 1); //remove one element with itemIndex from array
+    return removed;
+    
+  }
   
-}
-
-function calculateSubtotal(amount, price) {
- return amount * price; 
-}
+  function calculateSubtotal(amount, price) {
+    return amount * price; 
+  }
   
   //quantity section
-const addButtons = document.querySelectorAll(".addition_btn");
-  
+  const addButtons = document.querySelectorAll(".addition_btn");
+
 addButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const item = e.target.closest(".basket-product-item");
@@ -154,22 +160,21 @@ addButtons.forEach((button) => {
     const arrayItem = findItemById(purchasedProductsArray, itemID);
     let amount = getItemQuantity(arrayItem); //this is amount taken from the purchasedProductsArray
     amount = increaseQuantity(amount);
-
+    
     const inputQuantity = item.querySelector(".item-quantity");
     
     inputQuantity.value = amount;     
     const index = findIndex(purchasedProductsArray, itemID); 
-
+    
     updateItemQuantityInArray(purchasedProductsArray, index, amount);
     let newArray = updateItemQuantityInArray(purchasedProductsArray, index, amount);
     addArraytoLocalStorage();
     
-    //renderSubtotal();
     
   });
   
 }
-  
+
 );
 
 const subtractionButtons = document.querySelectorAll(".subtraction_btn"); 
@@ -177,6 +182,8 @@ const subtractionButtons = document.querySelectorAll(".subtraction_btn");
 subtractionButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const item = e.target.closest(".basket-product-item"); 
+    const itemSubtotal = item.querySelector(".subtotal-price");
+    
     const itemID = item.dataset.id;
     const arrayItem = findItemById(purchasedProductsArray, itemID);
     let amount  = getItemQuantity(arrayItem); 
@@ -185,7 +192,7 @@ subtractionButtons.forEach((button) => {
     if (amount >= 2) {
       amount = decreaseQuantity(amount);
       inputQuantity.value = amount;
-
+      
       const index = findIndex(purchasedProductsArray, itemID);
       updateItemQuantityInArray(purchasedProductsArray, index, amount);
       addArraytoLocalStorage();
@@ -194,15 +201,61 @@ subtractionButtons.forEach((button) => {
       cleanRenderedList(item);
       removeItemFromArray(purchasedProductsArray, findIndex(purchasedProductsArray, itemID));
       renderBasketCount(purchasedProductsArray);
-      //updateBasketCounter_number();
-
+      
       addArraytoLocalStorage();
       productAmount.textContent = purchasedProductsArray.length;
+      renderSubtotal(itemSubtotal, )
     }
-
+    
+  
+  });
   
 });
 
+function countSingleProductSubtotal(quantity, price) {
+  const subtotal = quantity * price;
+  return subtotal; 
+}
+
+function addSubtotalToObject(object, subtotalValue) {
+  object.subtotal = subtotalValue;
+}
+
+//this is the place where i should start next time - work on subtotal value
+
+
+function renderSubtotal(item, value) {
+  item.textContent = value;
+}
+
+
+
+// here is the problem: first value is calculated correctly at the beginning but on second forEach loop is taking value from second item 
+// the second not - 
+//1. a have an array
+//2. 
+updateBasketBtn.addEventListener("click", () => {
+  purchasedProductsArray.forEach((e) => {
+    //how can I point to each rendered item separately?
+    const itemQuantity = getItemQuantity(e); //from the array's item
+    console.log("itemQuantity", itemQuantity);
+    
+    const price = e.price; //from the array
+    const subtotal = (countSingleProductSubtotal(itemQuantity, price)).toFixed(2);
+    
+    
+    
+    console.log("subtotal: ", subtotal); 
+    addSubtotalToObject(e,subtotal);
+    console.log("subtot. after", purchasedProductsArray);
+    const itemId = e.id;
+    console.log(itemId); //from the array
+    const item = document.querySelector(`.basket-product-item[data-id="${itemId}"]`);// but it find only the first el. 
+    console.log("item", item);
+    const itemSubtotal = item.querySelector(".subtotal-price");
+    renderSubtotal(itemSubtotal, subtotal); 
+  })
+  
+  addArraytoLocalStorage();
+  
 });
-
-

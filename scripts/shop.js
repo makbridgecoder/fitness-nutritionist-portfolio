@@ -1,5 +1,3 @@
-//check if product is already in the basket, if yes => change quantity
-// or add new product
 
 import {
 
@@ -31,13 +29,14 @@ function textToNumber(e) {
 }
 
 
-function createProduct(id, name, price, img, amount) {
+function createProduct(id, name, price, img, amount, subtotal) {
   return {
     id: id,
     name: name,
     price: price,
     img: img,
-    amount: amount
+    amount: amount, 
+    subtotal: subtotal
   };
   
 }
@@ -51,7 +50,8 @@ function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-//use for the alert
+//use for the alert - but it count incorrectly!!!! it count only price * 1 not by quantity
+//so it works correctly only when all product's quntity is equal 1!!
 function calculateTotalPrice() {
  let total = 0;
   purchasedProductsArray.forEach(product => {
@@ -72,6 +72,12 @@ function showAlert(product, price, counter) {
     `);
   }
   
+  function showAlert2(product) {
+    alert(`
+      ${product} znajduje się już w koszyku!
+      Ilość została zmieniona
+      `);
+  }
 
   function productIsInTheArray(arrayPar, idPar) {
     const item = arrayPar.find(item => item.id === idPar); // find only first item
@@ -97,6 +103,7 @@ function showAlert(product, price, counter) {
 
       console.log("before test: ", purchasedProductsArray)
       
+      const title = product.querySelector(".products__boxes-desc__title").innerText; 
 
       if (productIsInTheArray(purchasedProductsArray, id)) {
 
@@ -106,6 +113,7 @@ function showAlert(product, price, counter) {
         const index = findIndex(purchasedProductsArray, id);
         updateItemQuantityInArray(purchasedProductsArray, index, amount); //update quantity in the purchedProductsArray
         console.log("You have already this product in your basket")
+        showAlert2(title);
         addItemToLocalStorage();
 
         //add to local storage
@@ -117,14 +125,14 @@ function showAlert(product, price, counter) {
         const priceText = getTheText(priceContainer);
         const price = textToNumber(priceText);
         
-        const title = product.querySelector(".products__boxes-desc__title").innerText; 
   
         //search for the img
         const img = product.querySelector(".product_img").getAttribute("src");
         
         let amount = 1;
-  
-        const createdProduct = createProduct(id, title, price, img, amount);
+        let subtotal = price;
+
+        const createdProduct = createProduct(id, title, price, img, amount, subtotal);
         addProductToArray(createdProduct);
         addItemToLocalStorage();
         

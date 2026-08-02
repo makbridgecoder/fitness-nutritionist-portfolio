@@ -59,3 +59,4 @@ export function increaseQuantity(amount) {
 export function updateItemQuantityInArray(array, index, amount) {
   array[index].amount = amount;
 } 
+
