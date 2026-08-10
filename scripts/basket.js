@@ -1,8 +1,5 @@
 //currentyly working on:
-//0. basketProductList issue
-//
-//updateBasketBtn
-//1.1. subtotal functionality / update basket
+// final total price - calculate and render!
 //6. użyj kodu zniżkowego-> alert
 //7. przejdz do platności - how to solve this?
 //8. declination of numbers in the alert
@@ -62,6 +59,8 @@ function cleanRenderedList(element) {
   element.remove();
 }
 
+console.log(purchasedProductsArray);
+
 function renderBasketProducts(items) {
   items.forEach(item => {
     const li = document.createElement("li");
@@ -75,7 +74,7 @@ function renderBasketProducts(items) {
     </a>
     </div>
     <div class="basket-product-content">
-    <h4 class="basket-product_title">${item.name}</h4>itemID:${item.id},amount:${item.amount}
+    <h4 class="basket-product_title">${item.name}</h4>
     <div class="basket-product_price">${item.price}PLN</div>
     </div>
     </div>
@@ -89,7 +88,7 @@ function renderBasketProducts(items) {
     <span class="subtotalTitle">Subtotal</span>
     <div>
     <span class="subtotal-price">${item.subtotal}</span><span> PLN</span> 
-
+    
     </div>
     </div>
     <div class="basket-product_delete-cnt">
@@ -165,12 +164,13 @@ addButtons.forEach((button) => {
     
     inputQuantity.value = amount;     
     const index = findIndex(purchasedProductsArray, itemID); 
-    
+    const price = arrayItem.price;
+    const itemSubtotal = item.querySelector(".subtotal-price");
+    const subtotal = countSingleProductSubtotal(amount, price).toFixed(2);
     updateItemQuantityInArray(purchasedProductsArray, index, amount);
-    let newArray = updateItemQuantityInArray(purchasedProductsArray, index, amount);
+    addSubtotalToObject(purchasedProductsArray, index, subtotal);
     addArraytoLocalStorage();
-    
-    
+    renderSubtotal(itemSubtotal, subtotal);
   });
   
 }
@@ -194,8 +194,11 @@ subtractionButtons.forEach((button) => {
       inputQuantity.value = amount;
       
       const index = findIndex(purchasedProductsArray, itemID);
+      const subtotal = countSingleProductSubtotal(amount, price).toFixed(2);
       updateItemQuantityInArray(purchasedProductsArray, index, amount);
+      addSubtotalToObject(purchasedProductsArray, index, subtotal);
       addArraytoLocalStorage();
+      renderSubtotal(itemSubtotal, subtotal);
       return;
     } else { 
       cleanRenderedList(item);
@@ -203,8 +206,7 @@ subtractionButtons.forEach((button) => {
       renderBasketCount(purchasedProductsArray);
       
       addArraytoLocalStorage();
-      productAmount.textContent = purchasedProductsArray.length;
-      renderSubtotal(itemSubtotal, )
+
     }
     
   
@@ -217,45 +219,13 @@ function countSingleProductSubtotal(quantity, price) {
   return subtotal; 
 }
 
-function addSubtotalToObject(object, subtotalValue) {
-  object.subtotal = subtotalValue;
+
+function addSubtotalToObject(array, index, subtotalValue) {
+  array[index].subtotal = subtotalValue;
 }
-
-//this is the place where i should start next time - work on subtotal value
-
 
 function renderSubtotal(item, value) {
   item.textContent = value;
 }
 
 
-
-// here is the problem: first value is calculated correctly at the beginning but on second forEach loop is taking value from second item 
-// the second not - 
-//1. a have an array
-//2. 
-updateBasketBtn.addEventListener("click", () => {
-  purchasedProductsArray.forEach((e) => {
-    //how can I point to each rendered item separately?
-    const itemQuantity = getItemQuantity(e); //from the array's item
-    console.log("itemQuantity", itemQuantity);
-    
-    const price = e.price; //from the array
-    const subtotal = (countSingleProductSubtotal(itemQuantity, price)).toFixed(2);
-    
-    
-    
-    console.log("subtotal: ", subtotal); 
-    addSubtotalToObject(e,subtotal);
-    console.log("subtot. after", purchasedProductsArray);
-    const itemId = e.id;
-    console.log(itemId); //from the array
-    const item = document.querySelector(`.basket-product-item[data-id="${itemId}"]`);// but it find only the first el. 
-    console.log("item", item);
-    const itemSubtotal = item.querySelector(".subtotal-price");
-    renderSubtotal(itemSubtotal, subtotal); 
-  })
-  
-  addArraytoLocalStorage();
-  
-});

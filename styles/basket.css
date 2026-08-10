@@ -184,7 +184,8 @@ input::-webkit-inner-spin-button {
 .basket-btns-cnt {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   align-items: center;
 }
@@ -193,9 +194,9 @@ input::-webkit-inner-spin-button {
 
 .shopping-continue-link a {
   color: var(--theme-color-black);
-  border: 1.3px solid var(--shop-product__button);
   padding: 0.5rem 0.9rem;
   border-radius: 96px;
+  background-color: var(--shop-product__button);
 }
 
 .act-basket-btn {
@@ -338,7 +339,6 @@ h3 {
 
 @media (width > 576px) {
   .basket-btns-cnt {
-    flex-direction: row;
     gap: 1.5rem;
   }
 
@@ -393,6 +393,9 @@ h3 {
   .right-container {
     width: 50%;
     padding-left: 1rem;
+  }
+
+  .basket-btns-cnt {
   }
 
   .basket-promo-cnt {

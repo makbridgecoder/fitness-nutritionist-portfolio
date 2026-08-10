@@ -132,7 +132,7 @@ function showAlert(product, price, counter) {
         let amount = 1;
         let subtotal = price;
 
-        const createdProduct = createProduct(id, title, price, img, amount, subtotal);
+        const createdProduct = createProduct(id, title, price, img, amount, subtotal); //check 
         addProductToArray(createdProduct);
         addItemToLocalStorage();
         
