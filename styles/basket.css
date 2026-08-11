@@ -77,6 +77,8 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  list-style-type: none;
+  padding-inline-start: 0;
 }
 
 .basket-product-item {
@@ -103,6 +105,8 @@ input::-webkit-inner-spin-button {
   border: 1.5px solid var(--shop-product__button);
 }
 
+
+
 .shop-entrance .addition_btn {
   border-radius: 0 96px 96px 0;
   border-left: none;
@@ -124,6 +128,7 @@ input::-webkit-inner-spin-button {
 
 .addition_btn {
   padding: 0 12px;
+  background-color: green;
 }
 
 .basket-product_subtotal-cnt {
@@ -134,20 +139,35 @@ input::-webkit-inner-spin-button {
   align-items: flex-end;
 }
 
-.basket-product_subtotal-cnt span:first-child {
+.subtotalTitle {
   font-size: 12px;
   color: var(--basket-light-gray);
   font-weight: 500;
+}
+
+.subtotal-price {
+  font-weight: 600;
 }
 
 .basket-product_subtotal-cnt span:nth-child(2) {
   font-weight: 600;
 }
 
+.basket-product_subtotal-cnt span:nth-child(3) {
+  font-weight: 600;
+}
+
 .basket-product_delete-cnt {
-  align-items: flex-end;
+  align-items: center;
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: auto;
+  padding: 10px 15px;
+  align-content: center;
+  transition: background-color 50ms ease-in-out;
+}
+
+.basket-product_delete-cnt:active {
+  background-color: var(--shop-product__button);
 }
 
 .basket-product_delete-btn {
@@ -164,7 +184,8 @@ input::-webkit-inner-spin-button {
 .basket-btns-cnt {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   align-items: center;
 }
@@ -173,9 +194,9 @@ input::-webkit-inner-spin-button {
 
 .shopping-continue-link a {
   color: var(--theme-color-black);
-  border: 1.3px solid var(--shop-product__button);
   padding: 0.5rem 0.9rem;
   border-radius: 96px;
+  background-color: var(--shop-product__button);
 }
 
 .act-basket-btn {
@@ -318,7 +339,6 @@ h3 {
 
 @media (width > 576px) {
   .basket-btns-cnt {
-    flex-direction: row;
     gap: 1.5rem;
   }
 
@@ -373,6 +393,9 @@ h3 {
   .right-container {
     width: 50%;
     padding-left: 1rem;
+  }
+
+  .basket-btns-cnt {
   }
 
   .basket-promo-cnt {

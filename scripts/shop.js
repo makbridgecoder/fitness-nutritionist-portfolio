@@ -1,10 +1,27 @@
-const buttons = document.querySelectorAll(".shop_product_button");
-const basketCounter = document.getElementById("basket-product-number");
 
-let purchasedProductsArray = [];
+import {
+
+  STORAGE_KEY,
+  basketCounter, 
+  getItemFromLocalStorage,
+  findIndex,
+  findItemById,
+  getItemQuantity,
+  increaseQuantity,
+  updateItemQuantityInArray,
+  basketIsEmpty, //use this for if to check if the item is in the basket
+  renderBasketCount
+} from "./helpers.js";
+
+
+
+const buttons = document.querySelectorAll(".shop_product_button");
+let purchasedProductsArray = getItemFromLocalStorage();
+
+renderBasketCount(purchasedProductsArray);
 
 function getTheText(e) {
-   return e.innerText;
+  return e.innerText;
 }
 
 function textToNumber(e) {
@@ -12,39 +29,29 @@ function textToNumber(e) {
 }
 
 
-function createProduct(id, name, price) {
+function createProduct(id, name, price, img, amount, subtotal) {
   return {
     id: id,
     name: name,
-    price: price
+    price: price,
+    img: img,
+    amount: amount, 
+    subtotal: subtotal
   };
-
+  
 }
 
 function addProductToArray(product) {
-   purchasedProductsArray.push(product);
-   addItemToLocalStorage();
+  purchasedProductsArray.push(product);
 }
 
-// create a local storage
-const STORAGE_KEY = "basketProducts";
 
 function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-function getItemFromLocalStorage() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) return;
-  
-  purchasedProductsArray = JSON.parse(stored);
-  renderBasketCount();
-  
-}
-
-getItemFromLocalStorage();
-
-
+//use for the alert - but it count incorrectly!!!! it count only price * 1 not by quantity
+//so it works correctly only when all product's quntity is equal 1!!
 function calculateTotalPrice() {
  let total = 0;
   purchasedProductsArray.forEach(product => {
@@ -55,56 +62,88 @@ function calculateTotalPrice() {
   return total.toFixed(2);
 } 
 
-function basketIsEmpty() {
-  return purchasedProductsArray.length === 0;
-}
 
-
-function renderBasketCount() {
-  if (basketIsEmpty()) {
-    basketCounter.style.display = "none";
-    return;
-  } 
-
-  basketCounter.style.display = "flex";
-  basketCounter.innerText = purchasedProductsArray.length;
-}
 
 function showAlert(product, price, counter) {
   alert(`
     Dodałeś ${product} za ${price} do koszyka. 
     Łącznie w koszyku: ${counter} produktów 
     o wartości: ${calculateTotalPrice()} PLN
-    
     `);
   }
   
-  
+  function showAlert2(product) {
+    alert(`
+      ${product} znajduje się już w koszyku!
+      Ilość została zmieniona
+      `);
+  }
+
+  function productIsInTheArray(arrayPar, idPar) {
+    const item = arrayPar.find(item => item.id === idPar); // find only first item
+    if (item) { 
+      console.log("product is allready in the array");
+      //i can use findIndex to return index; 
+      return true;
+    }  else {
+      console.log("product is not in the array")
+      return false;
+    }
+  }
+
   
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
+
+      
       const product = e.target.closest(".shop-product__main-box");
       if (!product) return;
       
       const id = product.dataset.id;
-      
-      const priceContainer = product.querySelector(".products__boxes-desc__price"); 
-      const priceText = getTheText(priceContainer);
-      const price = textToNumber(priceText);
+
+      console.log("before test: ", purchasedProductsArray)
       
       const title = product.querySelector(".products__boxes-desc__title").innerText; 
-      
-      const createdProduct = createProduct(id, title, price);
 
-      addProductToArray(createdProduct);
+      if (productIsInTheArray(purchasedProductsArray, id)) {
+
+        const arrayItem = findItemById(purchasedProductsArray, id); //find() method find only firs element
+        let amount = getItemQuantity(arrayItem); //get item from the object
+        amount = increaseQuantity(amount); // increase quantity by one 
+        const index = findIndex(purchasedProductsArray, id);
+        updateItemQuantityInArray(purchasedProductsArray, index, amount); //update quantity in the purchedProductsArray
+        console.log("You have already this product in your basket")
+        showAlert2(title);
+        addItemToLocalStorage();
+
+        //add to local storage
+        
+        return
+      } 
+
+        const priceContainer = product.querySelector(".products__boxes-desc__price"); 
+        const priceText = getTheText(priceContainer);
+        const price = textToNumber(priceText);
+        
+  
+        //search for the img
+        const img = product.querySelector(".product_img").getAttribute("src");
+        
+        let amount = 1;
+        let subtotal = price;
+
+        const createdProduct = createProduct(id, title, price, img, amount, subtotal); //check 
+        addProductToArray(createdProduct);
+        addItemToLocalStorage();
+        
+      
 
       
       const productCounter = purchasedProductsArray.length;
       
       showAlert(title, priceText, productCounter);
-      renderBasketCount();
+      renderBasketCount(purchasedProductsArray);
+      console.log(purchasedProductsArray)
     });
 
 });
-
-
