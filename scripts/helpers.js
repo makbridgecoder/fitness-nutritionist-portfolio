@@ -1,5 +1,37 @@
 export const STORAGE_KEY = "basketProducts";
 export let basketCounter = document.getElementById("basket-product-number");
+export const body = document.querySelector("body");
+export const hamburgerContainer = document.getElementById("navbar-hamburger-cnt");
+export const closeHamburgerContainer = document.getElementById("navbar-hamburger-close");
+export const navbarCollapseContainer = document.getElementById("nav-collapse-cnt");
+export const hamburgerElement = document.getElementById("navbar-hamburger-el");
+
+//navbar hamburger menu section
+export function activateToggleCollapseContainer() {
+  navbarCollapseContainer.classList.toggle("visible");
+  changeSymbolToClose();
+  body.style.overflow = "hidden";
+}
+
+export function collapseMenu() {
+  navbarCollapseContainer.classList.remove("visible");
+  changeSymbolToMenu();
+  body.style.removeProperty('overflow');
+}
+
+export function changeSymbolToClose() {
+  hamburgerElement.innerText = "close";
+}
+
+export function changeSymbolToMenu() {
+  hamburgerElement.innerText = "menu";
+}
+
+
+
+hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
+closeHamburgerContainer.addEventListener("click", collapseMenu);
+
 
 
 export function getItemFromLocalStorage() {

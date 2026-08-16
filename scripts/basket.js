@@ -17,12 +17,19 @@ this could be better idea, but do this after i finish basket funcitonality, then
  
 */
 
-import {
-  basketCounter,
-  STORAGE_KEY
-} from "./helpers.js";
 
 import {
+  basketCounter,
+  STORAGE_KEY,
+  body,
+  hamburgerContainer,
+  closeHamburgerContainer,
+  navbarCollapseContainer,
+  hamburgerElement, 
+  activateToggleCollapseContainer,
+  collapseMenu,
+  changeSymbolToClose,
+  changeSymbolToMenu,
   getItemFromLocalStorage,
   calculateTotalPrice, // do i need this in basket.js?
   renderBasketCount,
@@ -35,6 +42,8 @@ import {
 } from "./helpers.js";
 
 
+hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
+closeHamburgerContainer.addEventListener("click", collapseMenu);
 
 const productAmount = document.getElementById("basket-item-counter_number");
 const basketProductList = document.querySelector(".basket-products"); //list container
