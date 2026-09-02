@@ -7,6 +7,9 @@ export const navbarCollapseContainer = document.getElementById("nav-collapse-cnt
 export const hamburgerElement = document.getElementById("navbar-hamburger-el");
 
 //navbar hamburger menu section
+hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
+closeHamburgerContainer.addEventListener("click", collapseMenu);
+
 export function activateToggleCollapseContainer() {
   navbarCollapseContainer.classList.toggle("visible");
   changeSymbolToClose();
@@ -29,8 +32,6 @@ export function changeSymbolToMenu() {
 
 
 
-hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
-closeHamburgerContainer.addEventListener("click", collapseMenu);
 
 
 

@@ -1,14 +1,5 @@
 
 import {
-  body,
-  hamburgerContainer,
-  closeHamburgerContainer,
-  navbarCollapseContainer,
-  hamburgerElement, 
-  activateToggleCollapseContainer,
-  collapseMenu,
-  changeSymbolToClose,
-  changeSymbolToMenu,
   STORAGE_KEY,
   basketCounter, 
   getItemFromLocalStorage,
@@ -21,9 +12,6 @@ import {
   renderBasketCount
 } from "./helpers.js";
 
-
-hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
-closeHamburgerContainer.addEventListener("click", collapseMenu);
 
 const buttons = document.querySelectorAll(".shop_product_button");
 let purchasedProductsArray = getItemFromLocalStorage();
@@ -152,7 +140,7 @@ function showAlert(product, price, counter) {
       const productCounter = purchasedProductsArray.length;
       
       showAlert(title, priceText, productCounter);
-      renderBasketCount(purchasedProductsArray);
+      renderBasketCount(purchasedProductsArray); // this function is already called earlier, is it doubled?
       console.log(purchasedProductsArray)
     });
 

@@ -1,16 +1,15 @@
 import {
-  body,
-  hamburgerContainer,
-  closeHamburgerContainer,
-  navbarCollapseContainer,
-  hamburgerElement, 
-  activateToggleCollapseContainer,
-  collapseMenu,
-  changeSymbolToClose,
-  changeSymbolToMenu
+  renderBasketCount,
+  getItemFromLocalStorage
 } from "./helpers.js";
 
-hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
-closeHamburgerContainer.addEventListener("click", collapseMenu);
+
+const purchasedProductsArray = getItemFromLocalStorage();
+console.log(purchasedProductsArray);
+renderBasketCount(purchasedProductsArray);
 
 
+//DONE: 
+//NEXT: work on renderBasketCount() on each page
+//BLOCKED BY: should I duplicate code to each page or use helpers.js?
+//...renderBasketCount() work but only to the first element navbar-collapse, how can i make it work also to secend el. ?
