@@ -1,3 +1,11 @@
+import {
+  renderBasketCount, 
+  getItemFromLocalStorage
+} from "./helpers.js";
+
+const purchasedProductsArray = getItemFromLocalStorage();
+renderBasketCount(purchasedProductsArray);
+
 
 const ageInput = document.getElementById("metric__age");
 const heightInput = document.getElementById("metric__height");
@@ -18,10 +26,6 @@ const heightRange = { min: 60, max: 250, alertLokalization: heightAlertContainer
 
 const weightRange = { min: 20, max: 250, alertLokalization: weightAlertContainer};
 
-
-
-   
-   
 function isValid(range, inputType) {
   
   inputType.addEventListener("input", () => {
@@ -40,11 +44,9 @@ function isValid(range, inputType) {
   
 }
 
-
 isValid(ageRange, ageInput);
 isValid(heightRange, heightInput);
 isValid(weightRange, weightInput);
-
 
 function getExtraCalories(gender) {
   return gender === 1 ? -161 : 5;

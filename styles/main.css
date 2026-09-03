@@ -271,6 +271,20 @@ nav a:active {
   
 }
 
+.basket-product-number {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  font-size: 11px;
+  border-radius: 12px;
+  height: 13px;
+  width: 13px;
+  bottom: 36px;
+  left: 15px;
+}
+
 .nav-card-button {
   transition: transform 0.2s ease-out;
 
