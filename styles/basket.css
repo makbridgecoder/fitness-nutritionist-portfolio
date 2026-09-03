@@ -1,16 +1,67 @@
 
+body {
+  overflow-x: hidden;
+
+}
+
  main {
   text-transform: uppercase;
   font-size: 1rem;
+}
+
+.navbar {
+  padding: 15px 0;
+  background: var(--about-me-intro__background);
+}
+
+p {
+  margin: 0 0 0.7rem;
 }
 
 .container-XXL {
   padding: 0 0.2rem;
 }
 
+.right-container {
+  display: flex; 
+  flex-direction: column-reverse;
+}
+
+.modulo-hero-left-container {
+  margin-bottom: 1.5rem;
+}
+
 h2 {
   color: var(--blog-navbar-background);
   margin-bottom: 2rem;
+}
+
+h3 {
+  color: var(--shop-product__button);
+  
+}
+
+hr {
+  background-color: var(--theme-color-black);
+  height: 1px;
+  border: none;
+  margin: 0;
+}
+
+button {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 0;
+  border: 0;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: "Work Sans", sans-serif;
+  background-color: var(--shop-product__button);
+  transition: background-color 20ms ease-out 0.1s;
 }
 
 /* delete arrows from numeric input*/
@@ -22,7 +73,14 @@ input::-webkit-inner-spin-button {
 
 .shop-entrance {
   background-color: var(--most-pop-right-cont);
+  padding: 4rem 0;
 }
+
+.shop-entrance div {
+  color: var(--theme-color-black);
+}
+
+
 
 .shop-entrance button {
   width: auto;
@@ -180,6 +238,7 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
 
 }
+
 
 .basket-btns-cnt {
   display: flex;

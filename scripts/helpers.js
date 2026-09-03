@@ -1,5 +1,5 @@
 export const STORAGE_KEY = "basketProducts";
-export let basketCounter = document.getElementById("basket-product-number");
+export let basketCounters = document.querySelectorAll(".basket-product-number");
 export const body = document.querySelector("body");
 export const hamburgerContainer = document.getElementById("navbar-hamburger-cnt");
 export const closeHamburgerContainer = document.getElementById("navbar-hamburger-close");
@@ -30,26 +30,20 @@ export function changeSymbolToMenu() {
   hamburgerElement.innerText = "menu";
 }
 
-
-
-
-
-
 export function getItemFromLocalStorage() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (!stored) return [];
   
   return JSON.parse(stored);
 }
-  
 
 export function calculateTotalPrice(array) {
- let total = 0;
+  let total = 0;
   array.forEach(product => {
     const price = product.price;
     total += price;
   });
-
+  
   return total.toFixed(2);
 } 
 
@@ -57,18 +51,20 @@ export function basketIsEmpty(array) {
   return array.length === 0;
 }
 
-
 export function renderBasketCount(array) {
-  if (basketIsEmpty(array)) {
-    basketCounter.style.display = "none";
-    return;
-  } 
-  const productsQuantity = array.length;
-  basketCounter.style.display = "flex";
-  basketCounter.innerText = productsQuantity;
-}
+  basketCounters.forEach((counter) => {
+    if (basketIsEmpty(array)) {
+      counter.style.display = "none";
+      return;
+    } 
+    const productsQuantity = array.length;
+    counter.style.display = "flex";
+    counter.innerText = productsQuantity;
+  })
 
-export function findIndex(arr, itemId) {
+  }
+
+ export function findIndex(arr, itemId) {
   const index = arr.findIndex((item) => item.id === itemId); 
   return index;
 }
@@ -92,4 +88,5 @@ export function increaseQuantity(amount) {
 export function updateItemQuantityInArray(array, index, amount) {
   array[index].amount = amount;
 } 
+
 

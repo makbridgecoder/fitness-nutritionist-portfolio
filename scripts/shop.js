@@ -1,17 +1,14 @@
 
 import {
   STORAGE_KEY,
-  basketCounter, 
   getItemFromLocalStorage,
   findIndex,
   findItemById,
   getItemQuantity,
   increaseQuantity,
   updateItemQuantityInArray,
-  basketIsEmpty, //use this for if to check if the item is in the basket
   renderBasketCount
 } from "./helpers.js";
-
 
 const buttons = document.querySelectorAll(".shop_product_button");
 let purchasedProductsArray = getItemFromLocalStorage();
@@ -43,13 +40,10 @@ function addProductToArray(product) {
   purchasedProductsArray.push(product);
 }
 
-
 function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-//use for the alert - but it count incorrectly!!!! it count only price * 1 not by quantity
-//so it works correctly only when all product's quntity is equal 1!!
 function calculateTotalPrice() {
  let total = 0;
   purchasedProductsArray.forEach(product => {
@@ -59,8 +53,6 @@ function calculateTotalPrice() {
 
   return total.toFixed(2);
 } 
-
-
 
 function showAlert(product, price, counter) {
   alert(`
@@ -81,7 +73,6 @@ function showAlert(product, price, counter) {
     const item = arrayPar.find(item => item.id === idPar); // find only first item
     if (item) { 
       console.log("product is allready in the array");
-      //i can use findIndex to return index; 
       return true;
     }  else {
       console.log("product is not in the array")
@@ -113,9 +104,6 @@ function showAlert(product, price, counter) {
         console.log("You have already this product in your basket")
         showAlert2(title);
         addItemToLocalStorage();
-
-        //add to local storage
-        
         return
       } 
 
@@ -133,14 +121,10 @@ function showAlert(product, price, counter) {
         const createdProduct = createProduct(id, title, price, img, amount, subtotal); //check 
         addProductToArray(createdProduct);
         addItemToLocalStorage();
-        
-      
-
-      
       const productCounter = purchasedProductsArray.length;
       
       showAlert(title, priceText, productCounter);
-      renderBasketCount(purchasedProductsArray); // this function is already called earlier, is it doubled?
+      renderBasketCount(purchasedProductsArray);
       console.log(purchasedProductsArray)
     });
 

@@ -19,20 +19,16 @@ this could be better idea, but do this after i finish basket funcitonality, then
 
 
 import {
-  basketCounter,
   STORAGE_KEY,
   getItemFromLocalStorage,
   calculateTotalPrice, // do i need this in basket.js?
   renderBasketCount,
-  basketIsEmpty, 
   findIndex, 
   findItemById,
   getItemQuantity,
   increaseQuantity,
   updateItemQuantityInArray
 } from "./helpers.js";
-
-
 
 
 const productAmount = document.getElementById("basket-item-counter_number");
@@ -43,8 +39,6 @@ let purchasedProductsArray = getItemFromLocalStorage();
 let purchasedProductsArrayLength = purchasedProductsArray.length;
 
 productAmount.textContent = purchasedProductsArrayLength;
-
-
 
 function addArraytoLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
@@ -57,7 +51,6 @@ function cleanArray() {
 function cleanRenderedList(element) {
   element.remove();
 }
-
 
 function renderBasketProducts(items) {
   items.forEach(item => {
@@ -105,7 +98,6 @@ function renderBasketProducts(items) {
 renderBasketProducts(purchasedProductsArray);
 renderBasketCount(purchasedProductsArray);
 
-//and afer rendering:
 
 const deleteButton = document.querySelectorAll(".basket-product_delete-cnt"); //all delete buttons
 
@@ -135,7 +127,6 @@ function decreaseQuantity(amount) {
   }  else {
     return;
   }};
-  
   
   function removeItemFromArray(arr, itemIndex) { 
     const removed = arr.splice(itemIndex, 1); //remove one element with itemIndex from array
@@ -202,6 +193,7 @@ subtractionButtons.forEach((button) => {
       cleanRenderedList(item);
       removeItemFromArray(purchasedProductsArray, findIndex(purchasedProductsArray, itemID));
       renderBasketCount(purchasedProductsArray);
+      productAmount.textContent = purchasedProductsArray.length;
       
       addArraytoLocalStorage();
 
@@ -225,5 +217,3 @@ function addSubtotalToObject(array, index, subtotalValue) {
 function renderSubtotal(item, value) {
   item.textContent = value;
 }
-
-

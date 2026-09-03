@@ -271,7 +271,7 @@ nav a:active {
   
 }
 
-#basket-product-number {
+.basket-product-number {
   position: relative;
   display: flex;
   justify-content: center;
