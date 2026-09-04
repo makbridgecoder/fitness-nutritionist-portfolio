@@ -4,18 +4,15 @@
 //7. przejdz do platności - how to solve this?
 //8. declination of numbers in the alert
 //9. make saparete addButtons and subtractionsButtons event handlers and that maka a commit, later transoform it in one even handler
-//10. where should I use a arrow funcions within those code?
-//11. WHen i cliced a basket, first i saw a 0 than the corrent items number
-//12. how to implement basket counter in the other subpage?
-//13.1 and then display little window with two approaches: add or quit
-//c.d. move both to helpers.js
+//11. WHen i cliced a basket, first i see red dot than the corrent items number
 // verify addArraytoLocalStorage, in shop.js similar function has different name,
-/*why hamburger icon doesn't work in basket.html but works in shop.html?:
-1. shop.html has script tag with scipt.js
-2. i need to move this to helpers.js maybe? or leave this in sript.js but id modules? and imort funcitons
-this could be better idea, but do this after i finish basket funcitonality, then change branch and refactor this in all subpages
- 
-*/
+//12. 
+
+
+
+//DONE: 
+//NEXT: fix hamburger minor bugs
+//BLOCKED BY: 
 
 
 import {
