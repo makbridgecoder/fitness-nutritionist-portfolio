@@ -7,7 +7,8 @@ import {
   getItemQuantity,
   increaseQuantity,
   updateItemQuantityInArray,
-  renderBasketCount
+  renderBasketCount, 
+  calculateTotalPrice
 } from "./helpers.js";
 
 const buttons = document.querySelectorAll(".shop_product_button");
@@ -44,21 +45,12 @@ function addItemToLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
 }
 
-function calculateTotalPrice() {
- let total = 0;
-  purchasedProductsArray.forEach(product => {
-    const price = product.price;
-    total += price;
-  });
-
-  return total.toFixed(2);
-} 
 
 function showAlert(product, price, counter) {
   alert(`
     Dodałeś ${product} za ${price} do koszyka. 
-    Łącznie w koszyku: ${counter} produktów 
-    o wartości: ${calculateTotalPrice()} PLN
+    Łącznie w koszyku: ${counter} rodzaje produktów 
+    o wartości: ${calculateTotalPrice(purchasedProductsArray)} PLN
     `);
   }
   
@@ -70,7 +62,7 @@ function showAlert(product, price, counter) {
   }
 
   function productIsInTheArray(arrayPar, idPar) {
-    const item = arrayPar.find(item => item.id === idPar); // find only first item
+    const item = arrayPar.find(item => item.id === idPar); 
     if (item) { 
       console.log("product is allready in the array");
       return true;
@@ -96,11 +88,11 @@ function showAlert(product, price, counter) {
 
       if (productIsInTheArray(purchasedProductsArray, id)) {
 
-        const arrayItem = findItemById(purchasedProductsArray, id); //find() method find only firs element
-        let amount = getItemQuantity(arrayItem); //get item from the object
-        amount = increaseQuantity(amount); // increase quantity by one 
+        const arrayItem = findItemById(purchasedProductsArray, id); 
+        let amount = getItemQuantity(arrayItem); 
+        amount = increaseQuantity(amount);  
         const index = findIndex(purchasedProductsArray, id);
-        updateItemQuantityInArray(purchasedProductsArray, index, amount); //update quantity in the purchedProductsArray
+        updateItemQuantityInArray(purchasedProductsArray, index, amount); 
         console.log("You have already this product in your basket")
         showAlert2(title);
         addItemToLocalStorage();
@@ -118,7 +110,7 @@ function showAlert(product, price, counter) {
         let amount = 1;
         let subtotal = price;
 
-        const createdProduct = createProduct(id, title, price, img, amount, subtotal); //check 
+        const createdProduct = createProduct(id, title, price, img, amount, subtotal); 
         addProductToArray(createdProduct);
         addItemToLocalStorage();
       const productCounter = purchasedProductsArray.length;
