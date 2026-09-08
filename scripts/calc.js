@@ -6,7 +6,6 @@ import {
 const purchasedProductsArray = getItemFromLocalStorage();
 renderBasketCount(purchasedProductsArray);
 
-
 const ageInput = document.getElementById("metric__age");
 const heightInput = document.getElementById("metric__height");
 const weightInput = document.getElementById("metric__weight");
@@ -18,7 +17,6 @@ const heightAlertContainer = document.getElementById("height_alert_cnt");
 const weightAlertContainer = document.getElementById("weight_alert_cnt");
 const activityAlertContainer = document.getElementById("activity_alert_cnt");
 const messageContainer = document.getElementById("message_cnt");
-
 
 const ageRange = { min: 18,  max: 100, alertLokalization: ageAlertContainer};
 
@@ -68,9 +66,7 @@ function printScore(tdee) {
   
   Twoje TDEE: ${tdee}
   `
-  
 };
-    
 
 calculateForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -106,8 +102,6 @@ calculateForm.addEventListener("submit", (e) => {
     } else  {
       activityAlertContainer.textContent = "";
     }
-  
-    
   
   const gender = Number(selectedGender.value);
   const age = Number(ageInput.value);

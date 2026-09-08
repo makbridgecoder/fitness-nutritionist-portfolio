@@ -5,6 +5,7 @@ export const hamburgerContainer = document.getElementById("navbar-hamburger-cnt"
 export const closeHamburgerContainer = document.getElementById("navbar-hamburger-close");
 export const navbarCollapseContainer = document.getElementById("nav-collapse-cnt");
 export const hamburgerElement = document.getElementById("navbar-hamburger-el");
+export const basketTotalPrice = document.getElementById("basket-total-price");
 
 //navbar hamburger menu section
 hamburgerContainer.addEventListener("click", activateToggleCollapseContainer);
@@ -37,15 +38,6 @@ export function getItemFromLocalStorage() {
   return JSON.parse(stored);
 }
 
-export function calculateTotalPrice(array) {
-  let total = 0;
-  array.forEach(product => {
-    const price = product.price;
-    total += price;
-  });
-  
-  return total.toFixed(2);
-} 
 
 export function basketIsEmpty(array) {
   return array.length === 0;
@@ -89,4 +81,22 @@ export function updateItemQuantityInArray(array, index, amount) {
   array[index].amount = amount;
 } 
 
+export function calculateTotalPrice(array) {
+  let totalPrice = 0; 
+ array.forEach(product => {
+  let productSubtotal = Number(product.subtotal);
+  totalPrice += productSubtotal;
+  console.log(totalPrice);
+
+ })
+ console.log(typeof totalPrice);
+ const totalPriceToNumber = Number(totalPrice);
+ console.log(typeof totalPriceToNumber);
+ console.log(totalPriceToNumber)
+ return totalPriceToNumber.toFixed(2);
+}
+
+export function renderTotalPrice(array) {
+  basketIsEmpty(array) ? basketTotalPrice.innerText = "0" : basketTotalPrice.innerText = calculateTotalPrice(array);
+}
 

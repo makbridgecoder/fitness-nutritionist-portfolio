@@ -1,36 +1,22 @@
-//currentyly working on:
-// final total price - calculate and render!
-//6. użyj kodu zniżkowego-> alert
-//7. przejdz do platności - how to solve this?
-//8. declination of numbers in the alert
-//9. make saparete addButtons and subtractionsButtons event handlers and that maka a commit, later transoform it in one even handler
-//11. WHen i cliced a basket, first i see red dot than the corrent items number
-// verify addArraytoLocalStorage, in shop.js similar function has different name,
-//12. 
-
-
-
-//DONE: 
-//NEXT: fix hamburger minor bugs
-//BLOCKED BY: 
-
 
 import {
   STORAGE_KEY,
   getItemFromLocalStorage,
-  calculateTotalPrice, // do i need this in basket.js?
   renderBasketCount,
   findIndex, 
   findItemById,
   getItemQuantity,
   increaseQuantity,
-  updateItemQuantityInArray
+  updateItemQuantityInArray,
+  calculateTotalPrice,
+  renderTotalPrice, 
 } from "./helpers.js";
 
 
 const productAmount = document.getElementById("basket-item-counter_number");
-const basketProductList = document.querySelector(".basket-products"); //list container
-const updateBasketBtn = document.querySelector(".act-basket-btn");
+const basketProductList = document.querySelector(".basket-products");
+const finalPriceValue = document.getElementById("final-price-value");
+const discountValue = document.getElementById("discount-value");
 let purchasedProductsArray = getItemFromLocalStorage();
 
 let purchasedProductsArrayLength = purchasedProductsArray.length;
@@ -39,10 +25,6 @@ productAmount.textContent = purchasedProductsArrayLength;
 
 function addArraytoLocalStorage() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
-}
-
-function cleanArray() {
-  purchasedProductsArray = [];
 }
 
 function cleanRenderedList(element) {
@@ -94,22 +76,25 @@ function renderBasketProducts(items) {
 
 renderBasketProducts(purchasedProductsArray);
 renderBasketCount(purchasedProductsArray);
+calculateTotalPrice(purchasedProductsArray);
+renderTotalPrice(purchasedProductsArray);
 
-
-const deleteButton = document.querySelectorAll(".basket-product_delete-cnt"); //all delete buttons
+const deleteButton = document.querySelectorAll(".basket-product_delete-cnt");
 
 deleteButton.forEach((button) => {
   button.addEventListener("click", (e) => {
     const item = e.target.closest(".basket-product-item"); 
-    const buttonEl = item.querySelector(".basket-product_delete-cnt"); //why it doesn't work if i click on the button icon? only cnt work
-    const id = item.dataset.id;
-    //remove item from purchasedProductsArray
+    const buttonEl = item.querySelector(".basket-product_delete-cnt"); 
     purchasedProductsArray = purchasedProductsArray.filter(item => item.id != id);
     
     addArraytoLocalStorage();
     cleanRenderedList(item);
     renderBasketCount(purchasedProductsArray);
     productAmount.textContent = purchasedProductsArray.length;
+    calculateTotalPrice(purchasedProductsArray);
+    renderTotalPrice(purchasedProductsArray);
+    calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
+    renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
     
   });
   
@@ -126,16 +111,11 @@ function decreaseQuantity(amount) {
   }};
   
   function removeItemFromArray(arr, itemIndex) { 
-    const removed = arr.splice(itemIndex, 1); //remove one element with itemIndex from array
+    const removed = arr.splice(itemIndex, 1);
     return removed;
     
   }
   
-  function calculateSubtotal(amount, price) {
-    return amount * price; 
-  }
-  
-  //quantity section
   const addButtons = document.querySelectorAll(".addition_btn");
 
 addButtons.forEach((button) => {
@@ -143,7 +123,7 @@ addButtons.forEach((button) => {
     const item = e.target.closest(".basket-product-item");
     const itemID = item.dataset.id;
     const arrayItem = findItemById(purchasedProductsArray, itemID);
-    let amount = getItemQuantity(arrayItem); //this is amount taken from the purchasedProductsArray
+    let amount = getItemQuantity(arrayItem);
     amount = increaseQuantity(amount);
     
     const inputQuantity = item.querySelector(".item-quantity");
@@ -157,6 +137,10 @@ addButtons.forEach((button) => {
     addSubtotalToObject(purchasedProductsArray, index, subtotal);
     addArraytoLocalStorage();
     renderSubtotal(itemSubtotal, subtotal);
+    calculateTotalPrice(purchasedProductsArray);
+    renderTotalPrice(purchasedProductsArray);
+    calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
+    renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
   });
   
 }
@@ -185,12 +169,22 @@ subtractionButtons.forEach((button) => {
       addSubtotalToObject(purchasedProductsArray, index, subtotal);
       addArraytoLocalStorage();
       renderSubtotal(itemSubtotal, subtotal);
+      calculateTotalPrice(purchasedProductsArray);
+      renderTotalPrice(purchasedProductsArray);
+      calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
+      renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
+
       return;
     } else { 
       cleanRenderedList(item);
       removeItemFromArray(purchasedProductsArray, findIndex(purchasedProductsArray, itemID));
       renderBasketCount(purchasedProductsArray);
       productAmount.textContent = purchasedProductsArray.length;
+      calculateTotalPrice(purchasedProductsArray);
+      renderTotalPrice(purchasedProductsArray);
+      calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
+      renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
+
       
       addArraytoLocalStorage();
 
@@ -206,7 +200,6 @@ function countSingleProductSubtotal(quantity, price) {
   return subtotal; 
 }
 
-
 function addSubtotalToObject(array, index, subtotalValue) {
   array[index].subtotal = subtotalValue;
 }
@@ -214,3 +207,25 @@ function addSubtotalToObject(array, index, subtotalValue) {
 function renderSubtotal(item, value) {
   item.textContent = value;
 }
+
+function calculateFinalPrice (totalPrice, discount) {
+  let finalPrice = 0;
+  discount = 0;
+  if (discount == 0) {
+    finalPrice = totalPrice;
+    return Number(finalPrice).toFixed(2); 
+
+  } else finalPrice = totalPrice + discount;
+
+  return Number(finalPrice).toFixed(2); 
+}
+
+calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue)); 
+
+function renderFinalPrice(totalPrice, discount) {
+  finalPriceValue.innerText = calculateFinalPrice(totalPrice, discount);
+}
+
+renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
+
+
