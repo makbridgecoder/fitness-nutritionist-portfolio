@@ -5,6 +5,7 @@ import {
   renderBasketCount,
   findIndex, 
   findItemById,
+  addSubtotalToObject,
   getItemQuantity,
   increaseQuantity,
   updateItemQuantityInArray,
@@ -16,15 +17,14 @@ import {
 const productAmount = document.getElementById("basket-item-counter_number");
 const basketProductList = document.querySelector(".basket-products");
 const finalPriceValue = document.getElementById("final-price-value");
-const discountValue = document.getElementById("discount-value");
 let purchasedProductsArray = getItemFromLocalStorage();
 
-let purchasedProductsArrayLength = purchasedProductsArray.length;
-
-productAmount.textContent = purchasedProductsArrayLength;
 
 function addArraytoLocalStorage() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(purchasedProductsArray));
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(purchasedProductsArray)
+  );
 }
 
 function cleanRenderedList(element) {
@@ -39,7 +39,7 @@ function renderBasketProducts(items) {
     <div class="basket-product-item" data-id="${item.id}">
     <div class="basket-product-top">
     <div class="basket-product__img-cnt">
-    <a href="/pages/shop.html/" class="basket-product__img-link">
+    <a href="/pages/shop.html" class="basket-product__img-link">
     <img src='${item.img}' class="product_img" alt="Produkt w sklepie">
     </a>
     </div>
@@ -51,7 +51,7 @@ function renderBasketProducts(items) {
     <div class="basket-product-actions">
     <div class="basket-product_quantity-cnt">
     <button class="subtraction_btn">&#8722;</button>
-    <input name="product-quantity" class="item-quantity" type="number" value="${item.amount}" min="1" max="10" inputmode="numeric">
+    <input name="product-quantity" class="item-quantity" type="number" value="${item.amount}" min="1" max="10" inputmode="numeric" readonly>
     <button class="addition_btn">+</button>
     </div>
     <div class="basket-product_subtotal-cnt">
@@ -63,7 +63,7 @@ function renderBasketProducts(items) {
     </div>
     <div class="basket-product_delete-cnt">
     <div class="basket-product_delete-btn">
-    <img src="../icons/trash.svg" type="image/svg+xml"></img>
+    <img src="../icons/trash.svg" alt="">
     </div>
     </div>
     </div>
@@ -75,27 +75,19 @@ function renderBasketProducts(items) {
 }
 
 renderBasketProducts(purchasedProductsArray);
-renderBasketCount(purchasedProductsArray);
-calculateTotalPrice(purchasedProductsArray);
-renderTotalPrice(purchasedProductsArray);
+updateBasketSummary();
 
 const deleteButton = document.querySelectorAll(".basket-product_delete-cnt");
 
 deleteButton.forEach((button) => {
   button.addEventListener("click", (e) => {
     const item = e.target.closest(".basket-product-item"); 
-    const buttonEl = item.querySelector(".basket-product_delete-cnt"); 
-    purchasedProductsArray = purchasedProductsArray.filter(item => item.id != id);
+    const id = item.dataset.id;
+    purchasedProductsArray = purchasedProductsArray.filter(product => product.id !== id);
     
     addArraytoLocalStorage();
     cleanRenderedList(item);
-    renderBasketCount(purchasedProductsArray);
-    productAmount.textContent = purchasedProductsArray.length;
-    calculateTotalPrice(purchasedProductsArray);
-    renderTotalPrice(purchasedProductsArray);
-    calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
-    renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
-    
+    updateBasketSummary();
   });
   
 })
@@ -137,10 +129,7 @@ addButtons.forEach((button) => {
     addSubtotalToObject(purchasedProductsArray, index, subtotal);
     addArraytoLocalStorage();
     renderSubtotal(itemSubtotal, subtotal);
-    calculateTotalPrice(purchasedProductsArray);
-    renderTotalPrice(purchasedProductsArray);
-    calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
-    renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
+    updateBasketSummary();
   });
   
 }
@@ -169,28 +158,16 @@ subtractionButtons.forEach((button) => {
       addSubtotalToObject(purchasedProductsArray, index, subtotal);
       addArraytoLocalStorage();
       renderSubtotal(itemSubtotal, subtotal);
-      calculateTotalPrice(purchasedProductsArray);
-      renderTotalPrice(purchasedProductsArray);
-      calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
-      renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
-
+      updateBasketSummary();
       return;
     } else { 
       cleanRenderedList(item);
       removeItemFromArray(purchasedProductsArray, findIndex(purchasedProductsArray, itemID));
-      renderBasketCount(purchasedProductsArray);
-      productAmount.textContent = purchasedProductsArray.length;
-      calculateTotalPrice(purchasedProductsArray);
-      renderTotalPrice(purchasedProductsArray);
-      calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue));
-      renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
-
-      
       addArraytoLocalStorage();
+      updateBasketSummary();
 
     }
     
-  
   });
   
 });
@@ -200,32 +177,23 @@ function countSingleProductSubtotal(quantity, price) {
   return subtotal; 
 }
 
-function addSubtotalToObject(array, index, subtotalValue) {
-  array[index].subtotal = subtotalValue;
-}
-
 function renderSubtotal(item, value) {
   item.textContent = value;
 }
 
-function calculateFinalPrice (totalPrice, discount) {
-  let finalPrice = 0;
-  discount = 0;
-  if (discount == 0) {
-    finalPrice = totalPrice;
-    return Number(finalPrice).toFixed(2); 
-
-  } else finalPrice = totalPrice + discount;
-
-  return Number(finalPrice).toFixed(2); 
+function calculateFinalPrice (totalPrice) {
+ 
+  return Number(totalPrice).toFixed(2); 
 }
 
-calculateFinalPrice(calculateTotalPrice(purchasedProductsArray), Number(discountValue)); 
-
-function renderFinalPrice(totalPrice, discount) {
-  finalPriceValue.innerText = calculateFinalPrice(totalPrice, discount);
+function renderFinalPrice(totalPrice) {
+  finalPriceValue.innerText = calculateFinalPrice(totalPrice);
 }
 
-renderFinalPrice(calculateTotalPrice(purchasedProductsArray), discountValue);
-
+function updateBasketSummary() {
+  renderBasketCount(purchasedProductsArray);
+  productAmount.textContent = purchasedProductsArray.length;
+  renderTotalPrice(purchasedProductsArray);
+  renderFinalPrice(calculateTotalPrice(purchasedProductsArray));
+}
 

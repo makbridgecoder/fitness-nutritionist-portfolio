@@ -72,27 +72,24 @@ export function getItemQuantity(item) {
 }
 
 export function increaseQuantity(amount) {
-  const quantity = amount + 1;
-  return Number(quantity);
-  
+  return Math.min(Number(amount) + 1, 10);
 }
-
 export function updateItemQuantityInArray(array, index, amount) {
   array[index].amount = amount;
 } 
+
+export function addSubtotalToObject(array, index, subtotalValue) {
+  array[index].subtotal = subtotalValue;
+}
 
 export function calculateTotalPrice(array) {
   let totalPrice = 0; 
  array.forEach(product => {
   let productSubtotal = Number(product.subtotal);
   totalPrice += productSubtotal;
-  console.log(totalPrice);
 
  })
- console.log(typeof totalPrice);
  const totalPriceToNumber = Number(totalPrice);
- console.log(typeof totalPriceToNumber);
- console.log(totalPriceToNumber)
  return totalPriceToNumber.toFixed(2);
 }
 
